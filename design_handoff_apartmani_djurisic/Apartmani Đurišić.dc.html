@@ -1,415 +1,2305 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet data-dc-atomics>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Apartmani Đurišić · Posušje</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;background:#f6f1e8;color:#33291f;font-family:'Jost',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-  img{display:block}
-  a{color:#7c6f45;text-decoration:none}
-  a:hover{color:#33291f}
-  section{scroll-margin-top:78px}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-  @media(max-width:880px){.g2{grid-template-columns:1fr!important}.g3{grid-template-columns:1fr!important}.hero{grid-template-columns:1fr!important}.hero-img{min-height:340px!important}.navlinks{display:none!important}.hero-txt{padding:48px clamp(20px,6vw,56px)!important}}
-  @media(max-width:560px){.pricebadge{left:16px!important;bottom:16px!important;padding:15px 18px!important}}
-</style>
-</helmet>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Apartmani Đurišić · Posušje</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          * {
+            box-sizing: border-box;
+          }
+          html {
+            scroll-behavior: smooth;
+          }
+          body {
+            margin: 0;
+            background: #f6f1e8;
+            color: #33291f;
+            font-family: "Jost", system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+          }
+          img {
+            display: block;
+          }
+          a {
+            color: #7c6f45;
+            text-decoration: none;
+          }
+          a:hover {
+            color: #33291f;
+          }
+          section {
+            scroll-margin-top: 78px;
+          }
+          @keyframes fadeUp {
+            from {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            to {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          @media (max-width: 880px) {
+            .g2 {
+              grid-template-columns: 1fr !important;
+            }
+            .g3 {
+              grid-template-columns: 1fr !important;
+            }
+            .hero {
+              grid-template-columns: 1fr !important;
+            }
+            .hero-img {
+              min-height: 340px !important;
+            }
+            .navlinks {
+              display: none !important;
+            }
+            .hero-txt {
+              padding: 48px clamp(20px, 6vw, 56px) !important;
+            }
+          }
+          @media (max-width: 560px) {
+            .pricebadge {
+              left: 16px !important;
+              bottom: 16px !important;
+              padding: 15px 18px !important;
+            }
+          }
+        </style>
+      </helmet>
 
-<!-- ===================== NAV ===================== -->
-<div style="position:sticky;top:0;z-index:50;background:rgba(246,241,232,.9);backdrop-filter:blur(10px);border-bottom:1px solid rgba(51,41,31,.1)">
-  <div style="max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(20px,4vw,48px)">
-    <a href="#top" style="font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:600;letter-spacing:.01em;color:#33291f">Apartmani Đurišić</a>
-    <div class="navlinks" style="display:flex;gap:32px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#6b5f4f">
-      <a href="#apartments" data-hr="Apartmani" style="color:#6b5f4f">Apartments</a>
-      <a href="#gallery" data-hr="Galerija" style="color:#6b5f4f">Gallery</a>
-      <a href="#location" data-hr="Lokacija" style="color:#6b5f4f">Location</a>
-      <a href="#nearby" data-hr="Okolica" style="color:#6b5f4f">Nearby</a>
-      <a href="#contact" data-hr="Kontakt" style="color:#6b5f4f">Contact</a>
-    </div>
-    <div style="display:flex;gap:16px;align-items:center">
-      <button onClick="{{ toggleLang }}" style="background:none;border:1px solid rgba(51,41,31,.28);color:#33291f;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.1em;padding:8px 14px;cursor:pointer;border-radius:2px"><span id="langlabel">HR</span></button>
-      <a href="#contact" data-hr="Rezerviraj" style="background:#33291f;color:#f6f1e8;padding:11px 22px;font-size:12px;letter-spacing:.1em;text-transform:uppercase">Book</a>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== HERO ===================== -->
-<a id="top"></a>
-<div class="hero" style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;align-items:stretch;min-height:560px">
-  <div class="hero-txt" style="padding:76px clamp(20px,4vw,56px);display:flex;flex-direction:column;justify-content:center;gap:22px;animation:fadeUp .8s ease both">
-    <div data-hr="Posušje · Bosna i Hercegovina" style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#94734a">Posušje · Bosnia &amp; Herzegovina</div>
-    <h1 data-hr="Dva mirna apartmana u srcu Posušja." style="margin:0;font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,66px);line-height:1;font-weight:500;letter-spacing:-.01em">Two calm rooms in the heart of Posušje.</h1>
-    <p data-hr="Topli, novouređeni apartmani za dvoje — na korak od centra grada. Sve što vam treba, ništa suvišno." style="max-width:440px;font-size:16.5px;line-height:1.65;color:#655a49;font-weight:300;margin:0">Warm, freshly finished apartments for two — steps from the town centre. Everything you need, nothing you don't.</p>
-    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:6px">
-      <a href="#contact" data-hr="Rezervirajte boravak" style="background:#33291f;color:#f6f1e8;padding:15px 30px;font-size:13px;letter-spacing:.1em;text-transform:uppercase">Book your stay</a>
-      <a href="#gallery" data-hr="Pogledaj galeriju" style="border:1px solid rgba(51,41,31,.3);padding:15px 30px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#33291f">View gallery</a>
-    </div>
-  </div>
-  <div class="hero-img" style="position:relative;background:#e7ddcd;min-height:560px;overflow:hidden">
-    <img src="uploads/assets/IMG-20260702-WA0055.jpg" alt="Apartment bedroom" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-    <div class="pricebadge" style="position:absolute;left:28px;bottom:28px;background:rgba(246,241,232,.96);backdrop-filter:blur(4px);padding:20px 26px;border:1px solid rgba(51,41,31,.12);box-shadow:0 16px 34px -16px rgba(51,41,31,.4)">
-      <div style="font-family:'Cormorant Garamond',serif;font-size:38px;line-height:1;font-weight:600">€100<span data-hr=" / noć" style="font-size:16px;color:#8a7c68;font-family:'Jost',sans-serif;font-weight:300"> / night</span></div>
-      <div data-hr="Za 2 osobe · po apartmanu" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8a7c68;margin-top:6px">Sleeps 2 · per apartment</div>
-    </div>
-  </div>
-</div>
-
-<!-- ===================== INTRO STRIP ===================== -->
-<div style="background:#efe7d8">
-  <div style="max-width:1000px;margin:0 auto;padding:64px clamp(20px,4vw,48px);text-align:center">
-    <div data-hr="Dobrodošli" style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#94734a;margin-bottom:16px">Welcome</div>
-    <p data-hr="Dva pažljivo uređena apartmana, svaki za dvije osobe, smještena na tihoj lokaciji nadohvat centra Posušja. Prirodni hrast, mekane neutralne boje i sve moderne pogodnosti — vaš mirni dom daleko od doma." style="margin:0;font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3.2vw,32px);line-height:1.4;font-weight:400;color:#4a3f30">Two thoughtfully finished apartments, each for two guests, on a quiet spot within reach of the centre of Posušje. Natural oak, soft neutral tones and every modern comfort — your calm home away from home.</p>
-  </div>
-</div>
-
-<!-- ===================== THE TWO APARTMENTS ===================== -->
-<section id="apartments" style="max-width:1240px;margin:0 auto;padding:80px clamp(20px,4vw,48px) 40px">
-  <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:40px">
-    <h2 data-hr="Naša dva apartmana" style="margin:0;font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,40px);font-weight:500">The two apartments</h2>
-    <div style="flex:1;height:1px;background:rgba(51,41,31,.15)"></div>
-    <div style="font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#94734a">01 — 02</div>
-  </div>
-  <div class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:44px">
-    <!-- Apartment 1 -->
-    <div>
-      <div style="position:relative;height:320px;background:#e7ddcd;overflow:hidden">
-        <img src="uploads/assets/IMG-20260705-WA0002.jpg" alt="Apartment 1 kitchen" style="width:100%;height:100%;object-fit:cover">
-        <div data-hr="S kuhinjom" style="position:absolute;top:16px;left:16px;background:#33291f;color:#f6f1e8;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:7px 14px">With kitchen</div>
-      </div>
-      <div class="g3" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
-        <div style="height:110px;overflow:hidden;background:#e7ddcd"><img src="uploads/assets/IMG-20260702-WA0060.jpg" alt="Kitchen" style="width:100%;height:100%;object-fit:cover"></div>
-        <div style="height:110px;overflow:hidden;background:#e7ddcd"><img src="uploads/assets/IMG-20260702-WA0061.jpg" alt="Bedroom" style="width:100%;height:100%;object-fit:cover"></div>
-      </div>
-      <h3 style="margin:22px 0 0;font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600"><span data-hr="Apartman 1">Apartment 1</span></h3>
-      <p data-hr="Prostrani apartman za dvoje s vlastitom kuhinjom — indukcijska ploča, sudoper i kutak za blagovanje. Udoban bračni krevet, mramorna kupaonica i sve za duži boravak." style="font-size:15px;line-height:1.65;color:#655a49;font-weight:300;margin:10px 0 18px">A spacious stay for two with its own kitchenette — induction hob, sink and a dining nook. A comfortable double bed, marble bathroom and everything for a longer stay.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:8px">
-        <span data-hr="Kuhinja" style="border:1px solid rgba(51,41,31,.2);padding:6px 13px;font-size:12.5px;color:#4a4033">Kitchenette</span>
-        <span data-hr="Blagovaonica" style="border:1px solid rgba(51,41,31,.2);padding:6px 13px;font-size:12.5px;color:#4a4033">Dining nook</span>
-        <span data-hr="Privatna kupaonica" style="border:1px solid rgba(51,41,31,.2);padding:6px 13px;font-size:12.5px;color:#4a4033">Private bathroom</span>
-      </div>
-    </div>
-    <!-- Apartment 2 -->
-    <div>
-      <div style="position:relative;height:320px;background:#e7ddcd;overflow:hidden">
-        <img src="uploads/assets/IMG-20260702-WA0049.jpg" alt="Apartment 2 bedroom" style="width:100%;height:100%;object-fit:cover">
-        <div data-hr="Ugodni dvokrevetni" style="position:absolute;top:16px;left:16px;background:#7c6f45;color:#f6f1e8;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:7px 14px">Cosy double</div>
-      </div>
-      <div class="g3" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
-        <div style="height:110px;overflow:hidden;background:#e7ddcd"><img src="uploads/assets/IMG-20260702-WA0052.jpg" alt="Bedroom" style="width:100%;height:100%;object-fit:cover"></div>
-        <div style="height:110px;overflow:hidden;background:#e7ddcd"><img src="uploads/assets/IMG-20260702-WA0050.jpg" alt="Bathroom" style="width:100%;height:100%;object-fit:cover"></div>
-      </div>
-      <h3 style="margin:22px 0 0;font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600"><span data-hr="Apartman 2">Apartment 2</span></h3>
-      <p data-hr="Miran dvokrevetni apartman s mekim teksturama i toplim detaljima. Vlastita mramorna kupaonica i sve pogodnosti — savršen za kraći gradski predah za dvoje." style="font-size:15px;line-height:1.65;color:#655a49;font-weight:300;margin:10px 0 18px">A serene double with soft textures and warm details. Its own marble bathroom and every comfort — perfect for a short city break for two.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:8px">
-        <span data-hr="Bračni krevet" style="border:1px solid rgba(51,41,31,.2);padding:6px 13px;font-size:12.5px;color:#4a4033">Double bed</span>
-        <span data-hr="Privatna kupaonica" style="border:1px solid rgba(51,41,31,.2);padding:6px 13px;font-size:12.5px;color:#4a4033">Private bathroom</span>
-        <span data-hr="Blizu centra" style="border:1px solid rgba(51,41,31,.2);padding:6px 13px;font-size:12.5px;color:#4a4033">Near centre</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== AMENITIES ===================== -->
-<section id="amenities" style="background:#33291f;color:#e9e0d1">
-  <div style="max-width:1240px;margin:0 auto;padding:70px clamp(20px,4vw,48px)">
-    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:36px">
-      <h2 data-hr="Sadržaji" style="margin:0;font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.6vw,38px);font-weight:500;color:#fff">Everything included</h2>
-      <div style="flex:1;height:1px;background:rgba(255,255,255,.16)"></div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px 40px">
-      <div style="padding:16px 0;border-top:1px solid rgba(255,255,255,.15);font-size:15px">◈&nbsp;&nbsp;<span data-hr="Besplatni WiFi">Free WiFi</span></div>
-      <div style="padding:16px 0;border-top:1px solid rgba(255,255,255,.15);font-size:15px">◈&nbsp;&nbsp;<span data-hr="Klima uređaj">Air conditioning</span></div>
-      <div style="padding:16px 0;border-top:1px solid rgba(255,255,255,.15);font-size:15px">◈&nbsp;&nbsp;<span data-hr="Privatna kupaonica">Private bathroom</span></div>
-      <div style="padding:16px 0;border-top:1px solid rgba(255,255,255,.15);font-size:15px">◈&nbsp;&nbsp;<span data-hr="Kuhinja (Apartman 1)">Kitchenette (Apt 1)</span></div>
-      <div style="padding:16px 0;border-top:1px solid rgba(255,255,255,.15);font-size:15px">◈&nbsp;&nbsp;<span data-hr="Smart TV">Smart TV</span></div>
-      <div style="padding:16px 0;border-top:1px solid rgba(255,255,255,.15);font-size:15px">◈&nbsp;&nbsp;<span data-hr="Besplatan parking">Free parking</span></div>
-      <div style="padding:16px 0;border-top:1px solid rgba(255,255,255,.15);font-size:15px">◈&nbsp;&nbsp;<span data-hr="Perilica rublja">Washing machine</span></div>
-      <div style="padding:16px 0;border-top:1px solid rgba(255,255,255,.15);font-size:15px">◈&nbsp;&nbsp;<span data-hr="Blizu centra grada">Near city centre</span></div>
-      <div style="padding:16px 0;border-top:1px solid rgba(255,255,255,.15);font-size:15px">◈&nbsp;&nbsp;<span data-hr="Zabranjeno pušenje">Non-smoking</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== GALLERY ===================== -->
-<section id="gallery" style="max-width:1240px;margin:0 auto;padding:80px clamp(20px,4vw,48px) 40px">
-  <div style="text-align:center;margin-bottom:16px">
-    <div data-hr="Galerija" style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#94734a">Gallery</div>
-    <h2 data-hr="Pogled izbliza" style="margin:10px 0 0;font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,40px);font-weight:500">A closer look</h2>
-    <p data-hr="Kliknite bilo koju fotografiju za povećani prikaz." style="margin:10px 0 0;font-size:14px;color:#8a7c68;font-weight:300">Click any photo to view it larger.</p>
-  </div>
-
-  <!-- Apartment 1 -->
-  <div style="display:flex;align-items:center;gap:14px;margin:44px 0 20px">
-    <div data-hr="S kuhinjom" style="background:#33291f;color:#f6f1e8;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:6px 13px">With kitchen</div>
-    <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600"><span data-hr="Apartman 1">Apartment 1</span></h3>
-    <div style="flex:1;height:1px;background:rgba(51,41,31,.14)"></div>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));grid-auto-rows:210px;gap:12px">
-    <div style="grid-column:span 2;grid-row:span 2;overflow:hidden;background:#e7ddcd"><img onClick="{{ openLightbox }}" data-lb data-cap="Apartment 1 · With kitchen" src="uploads/assets/IMG-20260705-WA0002.jpg" alt="Apartment 1 kitchen" style="width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .6s ease" style-hover="transform:scale(1.05)"></div>
-    <div style="overflow:hidden;background:#e7ddcd"><img onClick="{{ openLightbox }}" data-lb data-cap="Apartment 1 · With kitchen" src="uploads/assets/IMG-20260702-WA0060.jpg" alt="Kitchen" style="width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .6s ease" style-hover="transform:scale(1.05)"></div>
-    <div style="overflow:hidden;background:#e7ddcd"><img onClick="{{ openLightbox }}" data-lb data-cap="Apartment 1 · With kitchen" src="uploads/assets/IMG-20260702-WA0058.jpg" alt="Bedroom" style="width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .6s ease" style-hover="transform:scale(1.05)"></div>
-    <div style="overflow:hidden;background:#e7ddcd"><img onClick="{{ openLightbox }}" data-lb data-cap="Apartment 1 · With kitchen" src="uploads/assets/IMG-20260702-WA0061.jpg" alt="Bedroom with window" style="width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .6s ease" style-hover="transform:scale(1.05)"></div>
-    <div style="overflow:hidden;background:#e7ddcd"><img onClick="{{ openLightbox }}" data-lb data-cap="Apartment 1 · With kitchen" src="uploads/assets/IMG-20260702-WA0056.jpg" alt="Bathroom" style="width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .6s ease" style-hover="transform:scale(1.05)"></div>
-    <div style="overflow:hidden;background:#e7ddcd"><img onClick="{{ openLightbox }}" data-lb data-cap="Apartment 1 · With kitchen" src="uploads/assets/IMG-20260702-WA0059.jpg" alt="Bathroom shower" style="width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .6s ease" style-hover="transform:scale(1.05)"></div>
-    <div style="overflow:hidden;background:#e7ddcd"><img onClick="{{ openLightbox }}" data-lb data-cap="Apartment 1 · With kitchen" src="uploads/assets/IMG-20260703-WA0007.jpg" alt="Kitchen detail" style="width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .6s ease" style-hover="transform:scale(1.05)"></div>
-    <div style="overflow:hidden;background:#e7ddcd"><img onClick="{{ openLightbox }}" data-lb data-cap="Apartment 1 · With kitchen" src="uploads/assets/IMG-20260703-WA0006.jpg" alt="Lamp detail" style="width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .6s ease" style-hover="transform:scale(1.05)"></div>
-  </div>
-
-  <!-- Apartment 2 -->
-  <div style="display:flex;align-items:center;gap:14px;margin:52px 0 20px">
-    <div data-hr="Ugodni dvokrevetni" style="background:#7c6f45;color:#f6f1e8;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:6px 13px">Cosy double</div>
-    <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600"><span data-hr="Apartman 2">Apartment 2</span></h3>
-    <div style="flex:1;height:1px;background:rgba(51,41,31,.14)"></div>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));grid-auto-rows:210px;gap:12px">
-    <div style="grid-column:span 2;grid-row:span 2;overflow:hidden;background:#e7ddcd"><img onClick="{{ openLightbox }}" data-lb data-cap="Apartment 2 · Cosy double" src="uploads/assets/IMG-20260702-WA0049.jpg" alt="Bedroom" style="width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .6s ease" style-hover="transform:scale(1.05)"></div>
-    <div style="overflow:hidden;background:#e7ddcd"><img onClick="{{ openLightbox }}" data-lb data-cap="Apartment 2 · Cosy double" src="uploads/assets/IMG-20260705-WA0000.jpg" alt="Bedroom with mirror" style="width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .6s ease" style-hover="transform:scale(1.05)"></div>
-    <div style="overflow:hidden;background:#e7ddcd"><img onClick="{{ openLightbox }}" data-lb data-cap="Apartment 2 · Cosy double" src="uploads/assets/IMG-20260702-WA0052.jpg" alt="Bedroom" style="width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .6s ease" style-hover="transform:scale(1.05)"></div>
-    <div style="overflow:hidden;background:#e7ddcd"><img onClick="{{ openLightbox }}" data-lb data-cap="Apartment 2 · Cosy double" src="uploads/assets/IMG-20260702-WA0050.jpg" alt="Bathroom" style="width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .6s ease" style-hover="transform:scale(1.05)"></div>
-    <div style="overflow:hidden;background:#e7ddcd"><img onClick="{{ openLightbox }}" data-lb data-cap="Apartment 2 · Cosy double" src="uploads/assets/IMG-20260702-WA0051.jpg" alt="Bathroom shower" style="width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .6s ease" style-hover="transform:scale(1.05)"></div>
-    <div style="overflow:hidden;background:#e7ddcd"><img onClick="{{ openLightbox }}" data-lb data-cap="Apartment 2 · Cosy double" src="uploads/assets/IMG-20260705-WA0001.jpg" alt="Orchid detail" style="width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .6s ease" style-hover="transform:scale(1.05)"></div>
-  </div>
-</section>
-
-<!-- ===================== LOCATION ===================== -->
-<section id="location" style="background:#efe7d8">
-  <div style="max-width:1240px;margin:0 auto;padding:80px clamp(20px,4vw,48px)">
-    <div class="g2" style="display:grid;grid-template-columns:1fr 1.15fr;gap:44px;align-items:center">
-      <div>
-        <div data-hr="Lokacija" style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#94734a">Location</div>
-        <h2 data-hr="Gdje se nalazimo" style="margin:10px 0 18px;font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,40px);font-weight:500">Where to find us</h2>
-        <p data-hr="Apartmani se nalaze u Posušju, nadohvat centra grada, kafića i trgovina. Dolina Blidinje, Kravica i jadranska obala su ugodna vožnja automobilom." style="font-size:16px;line-height:1.7;color:#655a49;font-weight:300;margin:0 0 24px;max-width:420px">The apartments are in Posušje, within reach of the town centre, cafés and shops. Blidinje nature park, Kravica falls and the Adriatic coast are all a comfortable drive away.</p>
-        <div style="display:flex;flex-direction:column;gap:14px;font-size:15px;color:#4a4033">
-          <div style="display:flex;gap:12px;align-items:baseline"><span style="color:#94734a">◈</span><div><strong data-hr="Adresa">Address</strong><br><span style="color:#655a49;font-weight:300">Posušje, Bosnia &amp; Herzegovina</span></div></div>
-          <div style="display:flex;gap:12px;align-items:baseline"><span style="color:#94734a">◈</span><div><strong data-hr="Parking">Parking</strong><br><span data-hr="Besplatan parking na licu mjesta" style="color:#655a49;font-weight:300">Free parking on site</span></div></div>
-        </div>
-        <a href="https://maps.app.goo.gl/Pz1w7w1fs3aDFY3S8" target="_blank" rel="noopener" data-hr="Otvori u Google kartama →" style="display:inline-block;margin-top:26px;border:1px solid rgba(51,41,31,.3);color:#33291f;padding:13px 26px;font-size:13px;letter-spacing:.08em;text-transform:uppercase">Open in Google Maps →</a>
-      </div>
-      <div style="height:420px;overflow:hidden;border:1px solid rgba(51,41,31,.14);box-shadow:0 16px 40px -18px rgba(51,41,31,.35)">
-        <iframe title="Map of Posušje" src="https://www.google.com/maps?q=Posu%C5%A1je,%20Bosnia%20and%20Herzegovina&z=14&output=embed" style="width:100%;height:100%;border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== HOUSE RULES & CHECK-IN ===================== -->
-<section id="rules" style="max-width:1240px;margin:0 auto;padding:80px clamp(20px,4vw,48px) 40px">
-  <div class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:44px">
-    <div>
-      <div data-hr="Prijava i odjava" style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#94734a">Check-in &amp; out</div>
-      <h2 data-hr="Vaš dolazak" style="margin:10px 0 22px;font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.6vw,36px);font-weight:500">Your arrival</h2>
-      <div style="display:flex;gap:30px;margin-bottom:26px">
-        <div><div data-hr="Prijava" style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8a7c68">Check-in</div><div style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;margin-top:4px">from 14:00</div></div>
-        <div><div data-hr="Odjava" style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8a7c68">Check-out</div><div style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;margin-top:4px">until 10:00</div></div>
-      </div>
-      <p data-hr="Dočekat ćemo vas osobno i predati ključeve. Javite nam okvirno vrijeme dolaska kako bismo sve pripremili — fleksibilni smo kad god je moguće." style="font-size:15.5px;line-height:1.7;color:#655a49;font-weight:300;margin:0">We'll meet you in person and hand over the keys. Let us know your approximate arrival time so we can have everything ready — we're flexible whenever we can be.</p>
-    </div>
-    <div>
-      <div data-hr="Kućni red" style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#94734a">House rules</div>
-      <h2 data-hr="Nekoliko molbi" style="margin:10px 0 22px;font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.6vw,36px);font-weight:500">A few gentle asks</h2>
-      <div style="display:flex;flex-direction:column">
-        <div style="display:flex;gap:14px;padding:14px 0;border-top:1px solid rgba(51,41,31,.14);font-size:15px;color:#4a4033"><span style="color:#94734a">◈</span><span data-hr="Zabranjeno pušenje u apartmanima">No smoking inside the apartments</span></div>
-        <div style="display:flex;gap:14px;padding:14px 0;border-top:1px solid rgba(51,41,31,.14);font-size:15px;color:#4a4033"><span style="color:#94734a">◈</span><span data-hr="Mir za susjede od 22:00 do 07:00">Quiet hours 22:00 – 07:00</span></div>
-        <div style="display:flex;gap:14px;padding:14px 0;border-top:1px solid rgba(51,41,31,.14);font-size:15px;color:#4a4033"><span style="color:#94734a">◈</span><span data-hr="Najviše 2 gosta po apartmanu">Up to 2 guests per apartment</span></div>
-        <div style="display:flex;gap:14px;padding:14px 0;border-top:1px solid rgba(51,41,31,.14);font-size:15px;color:#4a4033"><span style="color:#94734a">◈</span><span data-hr="Kućni ljubimci na upit">Pets on request</span></div>
-        <div style="display:flex;gap:14px;padding:14px 0;border-top:1px solid rgba(51,41,31,.14);border-bottom:1px solid rgba(51,41,31,.14);font-size:15px;color:#4a4033"><span style="color:#94734a">◈</span><span data-hr="Čuvajte prostor kao svoj dom">Please treat the space as your own home</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== NEARBY / AREA GUIDE ===================== -->
-<section id="nearby" style="background:#33291f;color:#e9e0d1">
-  <div style="max-width:1240px;margin:0 auto;padding:78px clamp(20px,4vw,48px)">
-    <div style="text-align:center;margin-bottom:44px">
-      <div data-hr="Okolica" style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#c2a86a">Nearby</div>
-      <h2 data-hr="Što razgledati u blizini" style="margin:10px 0 0;font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,40px);font-weight:500;color:#fff">Things to do around Posušje</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px">
-      <div style="border:1px solid rgba(255,255,255,.14);padding:26px 24px">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff"><span data-hr="Centar Posušja">Posušje town centre</span></div>
-        <div data-hr="5 min pješice" style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#c2a86a;margin:8px 0 12px">5 min walk</div>
-        <p data-hr="Kafići, restorani, pekare i trgovine — sve na kratkoj šetnji od apartmana." style="font-size:14px;line-height:1.6;color:#c7bca6;font-weight:300;margin:0">Cafés, restaurants, bakeries and shops — all a short stroll from the apartments.</p>
-      </div>
-      <div style="border:1px solid rgba(255,255,255,.14);padding:26px 24px">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff"><span data-hr="Park prirode Blidinje">Blidinje Nature Park</span></div>
-        <div data-hr="≈ 45 min vožnje" style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#c2a86a;margin:8px 0 12px">≈ 45 min drive</div>
-        <p data-hr="Planinski krajolici, staze i netaknuta priroda za dnevni izlet." style="font-size:14px;line-height:1.6;color:#c7bca6;font-weight:300;margin:0">Mountain landscapes, hiking trails and unspoilt nature for a day trip.</p>
-      </div>
-      <div style="border:1px solid rgba(255,255,255,.14);padding:26px 24px">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff"><span data-hr="Slapovi Kravica">Kravica Waterfalls</span></div>
-        <div data-hr="≈ 50 min vožnje" style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#c2a86a;margin:8px 0 12px">≈ 50 min drive</div>
-        <p data-hr="Prekrasni slapovi savršeni za kupanje u toplim mjesecima." style="font-size:14px;line-height:1.6;color:#c7bca6;font-weight:300;margin:0">Beautiful cascades, perfect for a swim during the warmer months.</p>
-      </div>
-      <div style="border:1px solid rgba(255,255,255,.14);padding:26px 24px">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff"><span data-hr="Jadranska obala">Adriatic coast</span></div>
-        <div data-hr="≈ 1 h vožnje" style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#c2a86a;margin:8px 0 12px">≈ 1 h drive</div>
-        <p data-hr="Makarska rivijera i dalmatinske plaže nadohvat su za dnevni odmor uz more." style="font-size:14px;line-height:1.6;color:#c7bca6;font-weight:300;margin:0">The Makarska riviera and Dalmatian beaches are within reach for a seaside day.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== CONTACT / BOOKING ===================== -->
-<section id="contact" style="max-width:1240px;margin:0 auto;padding:80px clamp(20px,4vw,48px)">
-  <div class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start">
-    <div>
-      <div data-hr="Kontakt" style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#94734a">Contact</div>
-      <h2 data-hr="Rezervirajte svoj termin" style="margin:10px 0 20px;font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,42px);font-weight:500">Reserve your dates</h2>
-      <p data-hr="Rezervirajte izravno kod nas za najbolju cijenu — odgovaramo brzo. Nazovite, pošaljite poruku ili nas pronađite na platformama za rezervacije." style="font-size:16px;line-height:1.7;color:#655a49;font-weight:300;margin:0 0 30px;max-width:400px">Book directly with us for the best rate — we reply fast. Call, message, or find us on the booking platforms.</p>
-      <div style="display:flex;flex-direction:column;gap:18px">
-        <a href="tel:+38762592672" style="display:flex;gap:14px;align-items:center;font-size:17px;color:#33291f"><span style="color:#94734a;font-size:14px">◈</span>+387 62 592 672</a>
-        <a href="mailto:milan.durisic79@gmail.com" style="display:flex;gap:14px;align-items:center;font-size:17px;color:#33291f;word-break:break-all"><span style="color:#94734a;font-size:14px">◈</span>milan.durisic79@gmail.com</a>
-        <a href="https://wa.me/38762592672" target="_blank" rel="noopener" style="display:flex;gap:14px;align-items:center;font-size:17px;color:#33291f">
-          <span style="color:#94734a;font-size:14px">◈</span>WhatsApp</a>
-      </div>
-      <div style="display:flex;gap:12px;margin-top:30px">
-        <a href="#" data-hr="Booking.com" style="background:#33291f;color:#f6f1e8;padding:13px 24px;font-size:13px;letter-spacing:.08em;text-transform:uppercase">Booking.com</a>
-        <a href="#" data-hr="Airbnb" style="border:1px solid rgba(51,41,31,.3);color:#33291f;padding:13px 24px;font-size:13px;letter-spacing:.08em;text-transform:uppercase">Airbnb</a>
-      </div>
-    </div>
-    <form onSubmit="{{ submitForm }}" style="background:#efe7d8;padding:36px clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:16px">
-      <div>
-        <label data-hr="Ime" style="display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8a7c68;margin-bottom:7px">Name</label>
-        <input name="name" type="text" required style="width:100%;background:#f6f1e8;border:1px solid rgba(51,41,31,.2);padding:13px 14px;font-family:'Jost',sans-serif;font-size:15px;color:#33291f">
-      </div>
-      <div>
-        <label data-hr="Email" style="display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8a7c68;margin-bottom:7px">Email</label>
-        <input name="email" type="email" required style="width:100%;background:#f6f1e8;border:1px solid rgba(51,41,31,.2);padding:13px 14px;font-family:'Jost',sans-serif;font-size:15px;color:#33291f">
-      </div>
-      <div style="display:flex;gap:14px">
-        <div style="flex:1">
-          <label data-hr="Datumi" style="display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8a7c68;margin-bottom:7px">Dates</label>
-          <input name="dates" type="text" placeholder="12–15 Aug" style="width:100%;background:#f6f1e8;border:1px solid rgba(51,41,31,.2);padding:13px 14px;font-family:'Jost',sans-serif;font-size:15px;color:#33291f">
-        </div>
-        <div style="flex:1">
-          <label data-hr="Apartman" style="display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8a7c68;margin-bottom:7px">Apartment</label>
-          <select name="apartment" style="width:100%;background:#f6f1e8;border:1px solid rgba(51,41,31,.2);padding:13px 14px;font-family:'Jost',sans-serif;font-size:15px;color:#33291f">
-            <option>Apartment 1</option>
-            <option>Apartment 2</option>
-            <option data-hr="Bilo koji">Either</option>
-          </select>
+      <!-- ===================== NAV ===================== -->
+      <div
+        style="
+          position: sticky;
+          top: 0;
+          z-index: 50;
+          background: rgba(246, 241, 232, 0.9);
+          backdrop-filter: blur(10px);
+          border-bottom: 1px solid rgba(51, 41, 31, 0.1);
+        "
+      >
+        <div
+          style="
+            max-width: 1240px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px clamp(20px, 4vw, 48px);
+          "
+        >
+          <a
+            href="#top"
+            style="
+              font-family: &quot;Cormorant Garamond&quot;, serif;
+              font-size: 23px;
+              font-weight: 600;
+              letter-spacing: 0.01em;
+              color: #33291f;
+            "
+            >Apartmani Đurišić</a
+          >
+          <div
+            class="navlinks"
+            style="
+              display: flex;
+              gap: 32px;
+              font-size: 13px;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              color: #6b5f4f;
+            "
+          >
+            <a href="#apartments" data-hr="Apartmani" style="color: #6b5f4f"
+              >Apartments</a
+            >
+            <a href="#gallery" data-hr="Galerija" style="color: #6b5f4f"
+              >Gallery</a
+            >
+            <a href="#location" data-hr="Lokacija" style="color: #6b5f4f"
+              >Location</a
+            >
+            <a href="#nearby" data-hr="Okolica" style="color: #6b5f4f"
+              >Nearby</a
+            >
+            <a href="#contact" data-hr="Kontakt" style="color: #6b5f4f"
+              >Contact</a
+            >
+          </div>
+          <div style="display: flex; gap: 16px; align-items: center">
+            <button
+              onClick="{{ toggleLang }}"
+              style="
+                background: none;
+                border: 1px solid rgba(51, 41, 31, 0.28);
+                color: #33291f;
+                font-family: &quot;Jost&quot;, sans-serif;
+                font-size: 12px;
+                letter-spacing: 0.1em;
+                padding: 8px 14px;
+                cursor: pointer;
+                border-radius: 2px;
+              "
+            >
+              <span id="langlabel">HR</span>
+            </button>
+            <a
+              href="#contact"
+              data-hr="Rezerviraj"
+              style="
+                background: #33291f;
+                color: #f6f1e8;
+                padding: 11px 22px;
+                font-size: 12px;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+              "
+              >Book</a
+            >
+          </div>
         </div>
       </div>
-      <div>
-        <label data-hr="Poruka" style="display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8a7c68;margin-bottom:7px">Message</label>
-        <textarea name="message" rows="3" style="width:100%;background:#f6f1e8;border:1px solid rgba(51,41,31,.2);padding:13px 14px;font-family:'Jost',sans-serif;font-size:15px;color:#33291f;resize:vertical"></textarea>
+
+      <!-- ===================== HERO ===================== -->
+      <a id="top"></a>
+      <div
+        class="hero"
+        style="
+          max-width: 1240px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1.05fr 1fr;
+          align-items: stretch;
+          min-height: 560px;
+        "
+      >
+        <div
+          class="hero-txt"
+          style="
+            padding: 76px clamp(20px, 4vw, 56px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 22px;
+            animation: fadeUp 0.8s ease both;
+          "
+        >
+          <div
+            data-hr="Posušje · Bosna i Hercegovina"
+            style="
+              font-size: 12px;
+              letter-spacing: 0.28em;
+              text-transform: uppercase;
+              color: #94734a;
+            "
+          >
+            Posušje · Bosnia &amp; Herzegovina
+          </div>
+          <h1
+            data-hr="Dva mirna apartmana u srcu Posušja."
+            style="
+              margin: 0;
+              font-family: &quot;Cormorant Garamond&quot;, serif;
+              font-size: clamp(42px, 6vw, 66px);
+              line-height: 1;
+              font-weight: 500;
+              letter-spacing: -0.01em;
+            "
+          >
+            Two calm rooms in the heart of Posušje.
+          </h1>
+          <p
+            data-hr="Topli, novouređeni apartmani za dvoje — na korak od centra grada. Sve što vam treba, ništa suvišno."
+            style="
+              max-width: 440px;
+              font-size: 16.5px;
+              line-height: 1.65;
+              color: #655a49;
+              font-weight: 300;
+              margin: 0;
+            "
+          >
+            Warm, freshly finished apartments for two — steps from the town
+            centre. Everything you need, nothing you don't.
+          </p>
+          <div
+            style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 6px"
+          >
+            <a
+              href="#contact"
+              data-hr="Rezervirajte boravak"
+              style="
+                background: #33291f;
+                color: #f6f1e8;
+                padding: 15px 30px;
+                font-size: 13px;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+              "
+              >Book your stay</a
+            >
+            <a
+              href="#gallery"
+              data-hr="Pogledaj galeriju"
+              style="
+                border: 1px solid rgba(51, 41, 31, 0.3);
+                padding: 15px 30px;
+                font-size: 13px;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: #33291f;
+              "
+              >View gallery</a
+            >
+          </div>
+        </div>
+        <div
+          class="hero-img"
+          style="
+            position: relative;
+            background: #e7ddcd;
+            min-height: 560px;
+            overflow: hidden;
+          "
+        >
+          <img
+            src="uploads/assets/IMG-20260702-WA0055.jpg"
+            alt="Apartment bedroom"
+            style="
+              position: absolute;
+              inset: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            "
+          />
+          <div
+            class="pricebadge"
+            style="
+              position: absolute;
+              left: 28px;
+              bottom: 28px;
+              background: rgba(246, 241, 232, 0.96);
+              backdrop-filter: blur(4px);
+              padding: 20px 26px;
+              border: 1px solid rgba(51, 41, 31, 0.12);
+              box-shadow: 0 16px 34px -16px rgba(51, 41, 31, 0.4);
+            "
+          >
+            <div
+              style="
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: 38px;
+                line-height: 1;
+                font-weight: 600;
+              "
+            >
+              €100<span
+                data-hr=" / noć"
+                style="
+                  font-size: 16px;
+                  color: #8a7c68;
+                  font-family: &quot;Jost&quot;, sans-serif;
+                  font-weight: 300;
+                "
+              >
+                / night</span
+              >
+            </div>
+            <div
+              data-hr="Za 2 osobe · po apartmanu"
+              style="
+                font-size: 11px;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+                color: #8a7c68;
+                margin-top: 6px;
+              "
+            >
+              Sleeps 2 · per apartment
+            </div>
+          </div>
+        </div>
       </div>
-      <button type="submit" data-hr="Pošalji upit" style="background:#33291f;color:#f6f1e8;border:none;padding:15px;font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;margin-top:4px">Send enquiry</button>
-    </form>
-  </div>
-</section>
 
-<!-- ===================== FOOTER ===================== -->
-<footer style="background:#26201a;color:#c7bca6">
-  <div style="max-width:1240px;margin:0 auto;padding:54px clamp(20px,4vw,48px);display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:30px" class="g3">
-    <div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:#efe6d6">Apartmani Đurišić</div>
-      <p data-hr="Posušje, Bosna i Hercegovina. Rezervirajte izravno za najbolju cijenu." style="font-size:14px;line-height:1.6;font-weight:300;margin:12px 0 0;max-width:260px">Posušje, Bosnia &amp; Herzegovina. Book directly for the best rate.</p>
-    </div>
-    <div style="font-size:14px;line-height:2.1"><div data-hr="Kontakt" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#c2a86a;margin-bottom:6px">Contact</div>+387 62 592 672<br>milan.durisic79@gmail.com</div>
-    <div style="font-size:14px;line-height:2.1"><div data-hr="Pronađite nas" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#c2a86a;margin-bottom:6px">Find us</div><a href="https://maps.app.goo.gl/Pz1w7w1fs3aDFY3S8" target="_blank" rel="noopener" style="color:#c7bca6">Google Maps</a><br>Booking.com · Airbnb</div>
-  </div>
-  <div style="border-top:1px solid rgba(255,255,255,.1)"><div style="max-width:1240px;margin:0 auto;padding:20px clamp(20px,4vw,48px);font-size:12px;color:#8a7f6c">© 2026 Apartmani Đurišić · Posušje</div></div>
-</footer>
+      <!-- ===================== INTRO STRIP ===================== -->
+      <div style="background: #efe7d8">
+        <div
+          style="
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 64px clamp(20px, 4vw, 48px);
+            text-align: center;
+          "
+        >
+          <div
+            data-hr="Dobrodošli"
+            style="
+              font-size: 12px;
+              letter-spacing: 0.28em;
+              text-transform: uppercase;
+              color: #94734a;
+              margin-bottom: 16px;
+            "
+          >
+            Welcome
+          </div>
+          <p
+            data-hr="Dva pažljivo uređena apartmana, svaki za dvije osobe, smještena na tihoj lokaciji nadohvat centra Posušja. Prirodni hrast, mekane neutralne boje i sve moderne pogodnosti — vaš mirni dom daleko od doma."
+            style="
+              margin: 0;
+              font-family: &quot;Cormorant Garamond&quot;, serif;
+              font-size: clamp(24px, 3.2vw, 32px);
+              line-height: 1.4;
+              font-weight: 400;
+              color: #4a3f30;
+            "
+          >
+            Two thoughtfully finished apartments, each for two guests, on a
+            quiet spot within reach of the centre of Posušje. Natural oak, soft
+            neutral tones and every modern comfort — your calm home away from
+            home.
+          </p>
+        </div>
+      </div>
 
+      <!-- ===================== THE TWO APARTMENTS ===================== -->
+      <section
+        id="apartments"
+        style="
+          max-width: 1240px;
+          margin: 0 auto;
+          padding: 80px clamp(20px, 4vw, 48px) 40px;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 40px;
+          "
+        >
+          <h2
+            data-hr="Naša dva apartmana"
+            style="
+              margin: 0;
+              font-family: &quot;Cormorant Garamond&quot;, serif;
+              font-size: clamp(30px, 4vw, 40px);
+              font-weight: 500;
+            "
+          >
+            The two apartments
+          </h2>
+          <div
+            style="flex: 1; height: 1px; background: rgba(51, 41, 31, 0.15)"
+          ></div>
+          <div
+            style="
+              font-size: 12px;
+              letter-spacing: 0.2em;
+              text-transform: uppercase;
+              color: #94734a;
+            "
+          >
+            01 — 02
+          </div>
+        </div>
+        <div
+          class="g2"
+          style="display: grid; grid-template-columns: 1fr 1fr; gap: 44px"
+        >
+          <!-- Apartment 1 -->
+          <div>
+            <div
+              style="
+                position: relative;
+                height: 320px;
+                background: #e7ddcd;
+                overflow: hidden;
+              "
+            >
+              <img
+                src="uploads/assets/IMG-20260705-WA0002.jpg"
+                alt="Apartment 1 kitchen"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+              <div
+                data-hr="S kuhinjom"
+                style="
+                  position: absolute;
+                  top: 16px;
+                  left: 16px;
+                  background: #33291f;
+                  color: #f6f1e8;
+                  font-size: 11px;
+                  letter-spacing: 0.14em;
+                  text-transform: uppercase;
+                  padding: 7px 14px;
+                "
+              >
+                With kitchen
+              </div>
+            </div>
+            <div
+              class="g3"
+              style="
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                margin-top: 10px;
+              "
+            >
+              <div style="height: 110px; overflow: hidden; background: #e7ddcd">
+                <img
+                  src="uploads/assets/IMG-20260702-WA0060.jpg"
+                  alt="Kitchen"
+                  style="width: 100%; height: 100%; object-fit: cover"
+                />
+              </div>
+              <div style="height: 110px; overflow: hidden; background: #e7ddcd">
+                <img
+                  src="uploads/assets/IMG-20260702-WA0061.jpg"
+                  alt="Bedroom"
+                  style="width: 100%; height: 100%; object-fit: cover"
+                />
+              </div>
+            </div>
+            <h3
+              style="
+                margin: 22px 0 0;
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: 28px;
+                font-weight: 600;
+              "
+            >
+              <span data-hr="Apartman 1">Apartment 1</span>
+            </h3>
+            <p
+              data-hr="Prostrani apartman za dvoje s vlastitom kuhinjom — indukcijska ploča, sudoper i kutak za blagovanje. Udoban bračni krevet, mramorna kupaonica i sve za duži boravak."
+              style="
+                font-size: 15px;
+                line-height: 1.65;
+                color: #655a49;
+                font-weight: 300;
+                margin: 10px 0 18px;
+              "
+            >
+              A spacious stay for two with its own kitchenette — induction hob,
+              sink and a dining nook. A comfortable double bed, marble bathroom
+              and everything for a longer stay.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px">
+              <span
+                data-hr="Kuhinja"
+                style="
+                  border: 1px solid rgba(51, 41, 31, 0.2);
+                  padding: 6px 13px;
+                  font-size: 12.5px;
+                  color: #4a4033;
+                "
+                >Kitchenette</span
+              >
+              <span
+                data-hr="Blagovaonica"
+                style="
+                  border: 1px solid rgba(51, 41, 31, 0.2);
+                  padding: 6px 13px;
+                  font-size: 12.5px;
+                  color: #4a4033;
+                "
+                >Dining nook</span
+              >
+              <span
+                data-hr="Privatna kupaonica"
+                style="
+                  border: 1px solid rgba(51, 41, 31, 0.2);
+                  padding: 6px 13px;
+                  font-size: 12.5px;
+                  color: #4a4033;
+                "
+                >Private bathroom</span
+              >
+            </div>
+          </div>
+          <!-- Apartment 2 -->
+          <div>
+            <div
+              style="
+                position: relative;
+                height: 320px;
+                background: #e7ddcd;
+                overflow: hidden;
+              "
+            >
+              <img
+                src="uploads/assets/IMG-20260702-WA0049.jpg"
+                alt="Apartment 2 bedroom"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+              <div
+                data-hr="Ugodni dvokrevetni"
+                style="
+                  position: absolute;
+                  top: 16px;
+                  left: 16px;
+                  background: #7c6f45;
+                  color: #f6f1e8;
+                  font-size: 11px;
+                  letter-spacing: 0.14em;
+                  text-transform: uppercase;
+                  padding: 7px 14px;
+                "
+              >
+                Cosy double
+              </div>
+            </div>
+            <div
+              class="g3"
+              style="
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                margin-top: 10px;
+              "
+            >
+              <div style="height: 110px; overflow: hidden; background: #e7ddcd">
+                <img
+                  src="uploads/assets/IMG-20260702-WA0052.jpg"
+                  alt="Bedroom"
+                  style="width: 100%; height: 100%; object-fit: cover"
+                />
+              </div>
+              <div style="height: 110px; overflow: hidden; background: #e7ddcd">
+                <img
+                  src="uploads/assets/IMG-20260702-WA0050.jpg"
+                  alt="Bathroom"
+                  style="width: 100%; height: 100%; object-fit: cover"
+                />
+              </div>
+            </div>
+            <h3
+              style="
+                margin: 22px 0 0;
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: 28px;
+                font-weight: 600;
+              "
+            >
+              <span data-hr="Apartman 2">Apartment 2</span>
+            </h3>
+            <p
+              data-hr="Miran dvokrevetni apartman s mekim teksturama i toplim detaljima. Vlastita mramorna kupaonica i sve pogodnosti — savršen za kraći gradski predah za dvoje."
+              style="
+                font-size: 15px;
+                line-height: 1.65;
+                color: #655a49;
+                font-weight: 300;
+                margin: 10px 0 18px;
+              "
+            >
+              A serene double with soft textures and warm details. Its own
+              marble bathroom and every comfort — perfect for a short city break
+              for two.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px">
+              <span
+                data-hr="Bračni krevet"
+                style="
+                  border: 1px solid rgba(51, 41, 31, 0.2);
+                  padding: 6px 13px;
+                  font-size: 12.5px;
+                  color: #4a4033;
+                "
+                >Double bed</span
+              >
+              <span
+                data-hr="Privatna kupaonica"
+                style="
+                  border: 1px solid rgba(51, 41, 31, 0.2);
+                  padding: 6px 13px;
+                  font-size: 12.5px;
+                  color: #4a4033;
+                "
+                >Private bathroom</span
+              >
+              <span
+                data-hr="Blizu centra"
+                style="
+                  border: 1px solid rgba(51, 41, 31, 0.2);
+                  padding: 6px 13px;
+                  font-size: 12.5px;
+                  color: #4a4033;
+                "
+                >Near centre</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
 
-<!-- ===================== LIGHTBOX MODAL ===================== -->
-<sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
-  <div onClick="{{ closeLightbox }}" style="position:fixed;inset:0;z-index:200;background:rgba(28,20,14,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(16px,4vw,56px);animation:fadeUp .28s ease both">
-    <button onClick="{{ closeLightbox }}" aria-label="Close" style="position:absolute;top:20px;right:26px;background:none;border:none;color:#f6f1e8;font-size:40px;line-height:1;cursor:pointer;font-family:'Jost',sans-serif;font-weight:300">×</button>
-    <button onClick="{{ lbPrev }}" aria-label="Previous" style="position:absolute;left:clamp(8px,2vw,28px);top:50%;transform:translateY(-50%);background:rgba(246,241,232,.12);border:1px solid rgba(246,241,232,.3);color:#f6f1e8;width:52px;height:52px;border-radius:50%;font-size:28px;line-height:1;cursor:pointer;font-family:'Jost',sans-serif">‹</button>
-    <button onClick="{{ lbNext }}" aria-label="Next" style="position:absolute;right:clamp(8px,2vw,28px);top:50%;transform:translateY(-50%);background:rgba(246,241,232,.12);border:1px solid rgba(246,241,232,.3);color:#f6f1e8;width:52px;height:52px;border-radius:50%;font-size:28px;line-height:1;cursor:pointer;font-family:'Jost',sans-serif">›</button>
-    <img onClick="{{ stopProp }}" src="{{ lbSrc }}" alt="{{ lbCap }}" style="max-width:min(1100px,90vw);max-height:80vh;object-fit:contain;box-shadow:0 30px 80px -20px rgba(0,0,0,.6)">
-    <div onClick="{{ stopProp }}" style="margin-top:18px;display:flex;align-items:center;gap:16px;color:#e9e0d1">
-      <span style="font-family:'Cormorant Garamond',serif;font-size:19px">{{ lbCap }}</span>
-      <span style="width:4px;height:4px;border-radius:50%;background:#c2a86a"></span>
-      <span style="font-size:12px;letter-spacing:.16em;color:#b6a888">{{ lbCounter }}</span>
-    </div>
-  </div>
-</sc-if></x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  state = { lbIndex: null };
-  lang = 'en';
+      <!-- ===================== AMENITIES ===================== -->
+      <section id="amenities" style="background: #33291f; color: #e9e0d1">
+        <div
+          style="
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 70px clamp(20px, 4vw, 48px);
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: baseline;
+              gap: 16px;
+              margin-bottom: 36px;
+            "
+          >
+            <h2
+              data-hr="Sadržaji"
+              style="
+                margin: 0;
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: clamp(28px, 3.6vw, 38px);
+                font-weight: 500;
+                color: #fff;
+              "
+            >
+              Everything included
+            </h2>
+            <div
+              style="
+                flex: 1;
+                height: 1px;
+                background: rgba(255, 255, 255, 0.16);
+              "
+            ></div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+              gap: 1px 40px;
+            "
+          >
+            <div
+              style="
+                padding: 16px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+                font-size: 15px;
+              "
+            >
+              ◈&nbsp;&nbsp;<span data-hr="Besplatni WiFi">Free WiFi</span>
+            </div>
+            <div
+              style="
+                padding: 16px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+                font-size: 15px;
+              "
+            >
+              ◈&nbsp;&nbsp;<span data-hr="Klima uređaj">Air conditioning</span>
+            </div>
+            <div
+              style="
+                padding: 16px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+                font-size: 15px;
+              "
+            >
+              ◈&nbsp;&nbsp;<span data-hr="Privatna kupaonica"
+                >Private bathroom</span
+              >
+            </div>
+            <div
+              style="
+                padding: 16px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+                font-size: 15px;
+              "
+            >
+              ◈&nbsp;&nbsp;<span data-hr="Kuhinja (Apartman 1)"
+                >Kitchenette (Apt 1)</span
+              >
+            </div>
+            <div
+              style="
+                padding: 16px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+                font-size: 15px;
+              "
+            >
+              ◈&nbsp;&nbsp;<span data-hr="Smart TV">Smart TV</span>
+            </div>
+            <div
+              style="
+                padding: 16px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+                font-size: 15px;
+              "
+            >
+              ◈&nbsp;&nbsp;<span data-hr="Besplatan parking">Free parking</span>
+            </div>
+            <div
+              style="
+                padding: 16px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+                font-size: 15px;
+              "
+            >
+              ◈&nbsp;&nbsp;<span data-hr="Perilica rublja"
+                >Washing machine</span
+              >
+            </div>
+            <div
+              style="
+                padding: 16px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+                font-size: 15px;
+              "
+            >
+              ◈&nbsp;&nbsp;<span data-hr="Blizu centra grada"
+                >Near city centre</span
+              >
+            </div>
+            <div
+              style="
+                padding: 16px 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+                font-size: 15px;
+              "
+            >
+              ◈&nbsp;&nbsp;<span data-hr="Zabranjeno pušenje">Non-smoking</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  componentDidMount() {
-    this.els = Array.from(document.querySelectorAll('[data-hr]'));
-    this.els.forEach(el => { el.dataset.en = el.textContent; });
-    document.addEventListener('keydown', this.onKey);
-  }
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.onKey);
-  }
+      <!-- ===================== GALLERY ===================== -->
+      <section
+        id="gallery"
+        style="
+          max-width: 1240px;
+          margin: 0 auto;
+          padding: 80px clamp(20px, 4vw, 48px) 40px;
+        "
+      >
+        <div style="text-align: center; margin-bottom: 16px">
+          <div
+            data-hr="Galerija"
+            style="
+              font-size: 12px;
+              letter-spacing: 0.28em;
+              text-transform: uppercase;
+              color: #94734a;
+            "
+          >
+            Gallery
+          </div>
+          <h2
+            data-hr="Pogled izbliza"
+            style="
+              margin: 10px 0 0;
+              font-family: &quot;Cormorant Garamond&quot;, serif;
+              font-size: clamp(30px, 4vw, 40px);
+              font-weight: 500;
+            "
+          >
+            A closer look
+          </h2>
+          <p
+            data-hr="Kliknite bilo koju fotografiju za povećani prikaz."
+            style="
+              margin: 10px 0 0;
+              font-size: 14px;
+              color: #8a7c68;
+              font-weight: 300;
+            "
+          >
+            Click any photo to view it larger.
+          </p>
+        </div>
 
-  onKey = (e) => {
-    if (this.state.lbIndex == null) return;
-    if (e.key === 'Escape') this.closeLightbox();
-    else if (e.key === 'ArrowRight') this.lbNext();
-    else if (e.key === 'ArrowLeft') this.lbPrev();
-  };
-  openLightbox = (e) => {
-    this.gallery = Array.from(document.querySelectorAll('[data-lb]'));
-    const idx = this.gallery.indexOf(e.currentTarget);
-    this.setState({ lbIndex: idx < 0 ? 0 : idx });
-  };
-  closeLightbox = () => this.setState({ lbIndex: null });
-  lbNext = (e) => { if (e) e.stopPropagation(); const n = (this.gallery || []).length; if (n) this.setState(s => ({ lbIndex: (s.lbIndex + 1) % n })); };
-  lbPrev = (e) => { if (e) e.stopPropagation(); const n = (this.gallery || []).length; if (n) this.setState(s => ({ lbIndex: (s.lbIndex - 1 + n) % n })); };
-  stopProp = (e) => e.stopPropagation();
+        <!-- Apartment 1 -->
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 44px 0 20px;
+          "
+        >
+          <div
+            data-hr="S kuhinjom"
+            style="
+              background: #33291f;
+              color: #f6f1e8;
+              font-size: 11px;
+              letter-spacing: 0.14em;
+              text-transform: uppercase;
+              padding: 6px 13px;
+            "
+          >
+            With kitchen
+          </div>
+          <h3
+            style="
+              margin: 0;
+              font-family: &quot;Cormorant Garamond&quot;, serif;
+              font-size: 26px;
+              font-weight: 600;
+            "
+          >
+            <span data-hr="Apartman 1">Apartment 1</span>
+          </h3>
+          <div
+            style="flex: 1; height: 1px; background: rgba(51, 41, 31, 0.14)"
+          ></div>
+        </div>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            grid-auto-rows: 210px;
+            gap: 12px;
+          "
+        >
+          <div
+            style="
+              grid-column: span 2;
+              grid-row: span 2;
+              overflow: hidden;
+              background: #e7ddcd;
+            "
+          >
+            <img
+              onClick="{{ openLightbox }}"
+              data-lb
+              data-cap="Apartment 1 · With kitchen"
+              src="uploads/assets/IMG-20260705-WA0002.jpg"
+              alt="Apartment 1 kitchen"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: pointer;
+                transition: transform 0.6s ease;
+              "
+              style-hover="transform:scale(1.05)"
+            />
+          </div>
+          <div style="overflow: hidden; background: #e7ddcd">
+            <img
+              onClick="{{ openLightbox }}"
+              data-lb
+              data-cap="Apartment 1 · With kitchen"
+              src="uploads/assets/IMG-20260702-WA0060.jpg"
+              alt="Kitchen"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: pointer;
+                transition: transform 0.6s ease;
+              "
+              style-hover="transform:scale(1.05)"
+            />
+          </div>
+          <div style="overflow: hidden; background: #e7ddcd">
+            <img
+              onClick="{{ openLightbox }}"
+              data-lb
+              data-cap="Apartment 1 · With kitchen"
+              src="uploads/assets/IMG-20260702-WA0058.jpg"
+              alt="Bedroom"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: pointer;
+                transition: transform 0.6s ease;
+              "
+              style-hover="transform:scale(1.05)"
+            />
+          </div>
+          <div style="overflow: hidden; background: #e7ddcd">
+            <img
+              onClick="{{ openLightbox }}"
+              data-lb
+              data-cap="Apartment 1 · With kitchen"
+              src="uploads/assets/IMG-20260702-WA0061.jpg"
+              alt="Bedroom with window"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: pointer;
+                transition: transform 0.6s ease;
+              "
+              style-hover="transform:scale(1.05)"
+            />
+          </div>
+          <div style="overflow: hidden; background: #e7ddcd">
+            <img
+              onClick="{{ openLightbox }}"
+              data-lb
+              data-cap="Apartment 1 · With kitchen"
+              src="uploads/assets/IMG-20260702-WA0056.jpg"
+              alt="Bathroom"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: pointer;
+                transition: transform 0.6s ease;
+              "
+              style-hover="transform:scale(1.05)"
+            />
+          </div>
+          <div style="overflow: hidden; background: #e7ddcd">
+            <img
+              onClick="{{ openLightbox }}"
+              data-lb
+              data-cap="Apartment 1 · With kitchen"
+              src="uploads/assets/IMG-20260702-WA0059.jpg"
+              alt="Bathroom shower"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: pointer;
+                transition: transform 0.6s ease;
+              "
+              style-hover="transform:scale(1.05)"
+            />
+          </div>
+          <div style="overflow: hidden; background: #e7ddcd">
+            <img
+              onClick="{{ openLightbox }}"
+              data-lb
+              data-cap="Apartment 1 · With kitchen"
+              src="uploads/assets/IMG-20260703-WA0007.jpg"
+              alt="Kitchen detail"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: pointer;
+                transition: transform 0.6s ease;
+              "
+              style-hover="transform:scale(1.05)"
+            />
+          </div>
+          <div style="overflow: hidden; background: #e7ddcd">
+            <img
+              onClick="{{ openLightbox }}"
+              data-lb
+              data-cap="Apartment 1 · With kitchen"
+              src="uploads/assets/IMG-20260703-WA0006.jpg"
+              alt="Lamp detail"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: pointer;
+                transition: transform 0.6s ease;
+              "
+              style-hover="transform:scale(1.05)"
+            />
+          </div>
+        </div>
 
-  renderVals() {
-    const i = this.state.lbIndex;
-    const list = this.gallery || [];
-    const open = i != null && list[i];
-    return {
-      lbOpen: !!open,
-      lbSrc: open ? list[i].getAttribute('src') : '',
-      lbCap: open ? (list[i].dataset.cap || '') : '',
-      lbCounter: open ? (i + 1) + ' / ' + list.length : '',
-      openLightbox: this.openLightbox,
-      closeLightbox: this.closeLightbox,
-      lbNext: this.lbNext,
-      lbPrev: this.lbPrev,
-      stopProp: this.stopProp,
-      toggleLang: () => {
-        this.lang = this.lang === 'hr' ? 'en' : 'hr';
-        (this.els || []).forEach(el => {
-          el.textContent = this.lang === 'hr' ? el.dataset.hr : el.dataset.en;
-        });
-        const lbl = document.getElementById('langlabel');
-        if (lbl) lbl.textContent = this.lang === 'hr' ? 'EN' : 'HR';
-        document.documentElement.lang = this.lang;
-      },
-      submitForm: (e) => {
-        e.preventDefault();
-        const f = e.target;
-        const g = n => (f.elements[n] && f.elements[n].value) || '';
-        const subject = encodeURIComponent('Booking enquiry — ' + (g('apartment') || 'Apartmani Đurišić'));
-        const body = encodeURIComponent(
-          'Name: ' + g('name') + '\n' +
-          'Email: ' + g('email') + '\n' +
-          'Dates: ' + g('dates') + '\n' +
-          'Apartment: ' + g('apartment') + '\n\n' +
-          g('message')
-        );
-        window.location.href = 'mailto:milan.durisic79@gmail.com?subject=' + subject + '&body=' + body;
+        <!-- Apartment 2 -->
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 52px 0 20px;
+          "
+        >
+          <div
+            data-hr="Ugodni dvokrevetni"
+            style="
+              background: #7c6f45;
+              color: #f6f1e8;
+              font-size: 11px;
+              letter-spacing: 0.14em;
+              text-transform: uppercase;
+              padding: 6px 13px;
+            "
+          >
+            Cosy double
+          </div>
+          <h3
+            style="
+              margin: 0;
+              font-family: &quot;Cormorant Garamond&quot;, serif;
+              font-size: 26px;
+              font-weight: 600;
+            "
+          >
+            <span data-hr="Apartman 2">Apartment 2</span>
+          </h3>
+          <div
+            style="flex: 1; height: 1px; background: rgba(51, 41, 31, 0.14)"
+          ></div>
+        </div>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            grid-auto-rows: 210px;
+            gap: 12px;
+          "
+        >
+          <div
+            style="
+              grid-column: span 2;
+              grid-row: span 2;
+              overflow: hidden;
+              background: #e7ddcd;
+            "
+          >
+            <img
+              onClick="{{ openLightbox }}"
+              data-lb
+              data-cap="Apartment 2 · Cosy double"
+              src="uploads/assets/IMG-20260702-WA0049.jpg"
+              alt="Bedroom"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: pointer;
+                transition: transform 0.6s ease;
+              "
+              style-hover="transform:scale(1.05)"
+            />
+          </div>
+          <div style="overflow: hidden; background: #e7ddcd">
+            <img
+              onClick="{{ openLightbox }}"
+              data-lb
+              data-cap="Apartment 2 · Cosy double"
+              src="uploads/assets/IMG-20260705-WA0000.jpg"
+              alt="Bedroom with mirror"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: pointer;
+                transition: transform 0.6s ease;
+              "
+              style-hover="transform:scale(1.05)"
+            />
+          </div>
+          <div style="overflow: hidden; background: #e7ddcd">
+            <img
+              onClick="{{ openLightbox }}"
+              data-lb
+              data-cap="Apartment 2 · Cosy double"
+              src="uploads/assets/IMG-20260702-WA0052.jpg"
+              alt="Bedroom"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: pointer;
+                transition: transform 0.6s ease;
+              "
+              style-hover="transform:scale(1.05)"
+            />
+          </div>
+          <div style="overflow: hidden; background: #e7ddcd">
+            <img
+              onClick="{{ openLightbox }}"
+              data-lb
+              data-cap="Apartment 2 · Cosy double"
+              src="uploads/assets/IMG-20260702-WA0050.jpg"
+              alt="Bathroom"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: pointer;
+                transition: transform 0.6s ease;
+              "
+              style-hover="transform:scale(1.05)"
+            />
+          </div>
+          <div style="overflow: hidden; background: #e7ddcd">
+            <img
+              onClick="{{ openLightbox }}"
+              data-lb
+              data-cap="Apartment 2 · Cosy double"
+              src="uploads/assets/IMG-20260702-WA0051.jpg"
+              alt="Bathroom shower"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: pointer;
+                transition: transform 0.6s ease;
+              "
+              style-hover="transform:scale(1.05)"
+            />
+          </div>
+          <div style="overflow: hidden; background: #e7ddcd">
+            <img
+              onClick="{{ openLightbox }}"
+              data-lb
+              data-cap="Apartment 2 · Cosy double"
+              src="uploads/assets/IMG-20260705-WA0001.jpg"
+              alt="Orchid detail"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: pointer;
+                transition: transform 0.6s ease;
+              "
+              style-hover="transform:scale(1.05)"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== LOCATION ===================== -->
+      <section id="location" style="background: #efe7d8">
+        <div
+          style="
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 80px clamp(20px, 4vw, 48px);
+          "
+        >
+          <div
+            class="g2"
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1.15fr;
+              gap: 44px;
+              align-items: center;
+            "
+          >
+            <div>
+              <div
+                data-hr="Lokacija"
+                style="
+                  font-size: 12px;
+                  letter-spacing: 0.28em;
+                  text-transform: uppercase;
+                  color: #94734a;
+                "
+              >
+                Location
+              </div>
+              <h2
+                data-hr="Gdje se nalazimo"
+                style="
+                  margin: 10px 0 18px;
+                  font-family: &quot;Cormorant Garamond&quot;, serif;
+                  font-size: clamp(30px, 4vw, 40px);
+                  font-weight: 500;
+                "
+              >
+                Where to find us
+              </h2>
+              <p
+                data-hr="Apartmani se nalaze u Posušju, nadohvat centra grada, kafića i trgovina. Dolina Blidinje, Kravica i jadranska obala su ugodna vožnja automobilom."
+                style="
+                  font-size: 16px;
+                  line-height: 1.7;
+                  color: #655a49;
+                  font-weight: 300;
+                  margin: 0 0 24px;
+                  max-width: 420px;
+                "
+              >
+                The apartments are in Posušje, within reach of the town centre,
+                cafés and shops. Blidinje nature park, Kravica falls and the
+                Adriatic coast are all a comfortable drive away.
+              </p>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  gap: 14px;
+                  font-size: 15px;
+                  color: #4a4033;
+                "
+              >
+                <div style="display: flex; gap: 12px; align-items: baseline">
+                  <span style="color: #94734a">◈</span>
+                  <div>
+                    <strong data-hr="Adresa">Address</strong><br /><span
+                      style="color: #655a49; font-weight: 300"
+                      >Posušje, Bosnia &amp; Herzegovina</span
+                    >
+                  </div>
+                </div>
+                <div style="display: flex; gap: 12px; align-items: baseline">
+                  <span style="color: #94734a">◈</span>
+                  <div>
+                    <strong data-hr="Parking">Parking</strong><br /><span
+                      data-hr="Besplatan parking na licu mjesta"
+                      style="color: #655a49; font-weight: 300"
+                      >Free parking on site</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <a
+                href="https://maps.app.goo.gl/Pz1w7w1fs3aDFY3S8"
+                target="_blank"
+                rel="noopener"
+                data-hr="Otvori u Google kartama →"
+                style="
+                  display: inline-block;
+                  margin-top: 26px;
+                  border: 1px solid rgba(51, 41, 31, 0.3);
+                  color: #33291f;
+                  padding: 13px 26px;
+                  font-size: 13px;
+                  letter-spacing: 0.08em;
+                  text-transform: uppercase;
+                "
+                >Open in Google Maps →</a
+              >
+            </div>
+            <div
+              style="
+                height: 420px;
+                overflow: hidden;
+                border: 1px solid rgba(51, 41, 31, 0.14);
+                box-shadow: 0 16px 40px -18px rgba(51, 41, 31, 0.35);
+              "
+            >
+              <iframe
+                title="Map of Posušje"
+                src="https://www.google.com/maps?q=Posu%C5%A1je,%20Bosnia%20and%20Herzegovina&z=14&output=embed"
+                style="width: 100%; height: 100%; border: 0"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== HOUSE RULES & CHECK-IN ===================== -->
+      <section
+        id="rules"
+        style="
+          max-width: 1240px;
+          margin: 0 auto;
+          padding: 80px clamp(20px, 4vw, 48px) 40px;
+        "
+      >
+        <div
+          class="g2"
+          style="display: grid; grid-template-columns: 1fr 1fr; gap: 44px"
+        >
+          <div>
+            <div
+              data-hr="Prijava i odjava"
+              style="
+                font-size: 12px;
+                letter-spacing: 0.28em;
+                text-transform: uppercase;
+                color: #94734a;
+              "
+            >
+              Check-in &amp; out
+            </div>
+            <h2
+              data-hr="Vaš dolazak"
+              style="
+                margin: 10px 0 22px;
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: clamp(28px, 3.6vw, 36px);
+                font-weight: 500;
+              "
+            >
+              Your arrival
+            </h2>
+            <div style="display: flex; gap: 30px; margin-bottom: 26px">
+              <div>
+                <div
+                  data-hr="Prijava"
+                  style="
+                    font-size: 12px;
+                    letter-spacing: 0.14em;
+                    text-transform: uppercase;
+                    color: #8a7c68;
+                  "
+                >
+                  Check-in
+                </div>
+                <div
+                  style="
+                    font-family: &quot;Cormorant Garamond&quot;, serif;
+                    font-size: 30px;
+                    font-weight: 600;
+                    margin-top: 4px;
+                  "
+                >
+                  from 14:00
+                </div>
+              </div>
+              <div>
+                <div
+                  data-hr="Odjava"
+                  style="
+                    font-size: 12px;
+                    letter-spacing: 0.14em;
+                    text-transform: uppercase;
+                    color: #8a7c68;
+                  "
+                >
+                  Check-out
+                </div>
+                <div
+                  style="
+                    font-family: &quot;Cormorant Garamond&quot;, serif;
+                    font-size: 30px;
+                    font-weight: 600;
+                    margin-top: 4px;
+                  "
+                >
+                  until 10:00
+                </div>
+              </div>
+            </div>
+            <p
+              data-hr="Dočekat ćemo vas osobno i predati ključeve. Javite nam okvirno vrijeme dolaska kako bismo sve pripremili — fleksibilni smo kad god je moguće."
+              style="
+                font-size: 15.5px;
+                line-height: 1.7;
+                color: #655a49;
+                font-weight: 300;
+                margin: 0;
+              "
+            >
+              We'll meet you in person and hand over the keys. Let us know your
+              approximate arrival time so we can have everything ready — we're
+              flexible whenever we can be.
+            </p>
+          </div>
+          <div>
+            <div
+              data-hr="Kućni red"
+              style="
+                font-size: 12px;
+                letter-spacing: 0.28em;
+                text-transform: uppercase;
+                color: #94734a;
+              "
+            >
+              House rules
+            </div>
+            <h2
+              data-hr="Nekoliko molbi"
+              style="
+                margin: 10px 0 22px;
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: clamp(28px, 3.6vw, 36px);
+                font-weight: 500;
+              "
+            >
+              A few gentle asks
+            </h2>
+            <div style="display: flex; flex-direction: column">
+              <div
+                style="
+                  display: flex;
+                  gap: 14px;
+                  padding: 14px 0;
+                  border-top: 1px solid rgba(51, 41, 31, 0.14);
+                  font-size: 15px;
+                  color: #4a4033;
+                "
+              >
+                <span style="color: #94734a">◈</span
+                ><span data-hr="Zabranjeno pušenje u apartmanima"
+                  >No smoking inside the apartments</span
+                >
+              </div>
+              <div
+                style="
+                  display: flex;
+                  gap: 14px;
+                  padding: 14px 0;
+                  border-top: 1px solid rgba(51, 41, 31, 0.14);
+                  font-size: 15px;
+                  color: #4a4033;
+                "
+              >
+                <span style="color: #94734a">◈</span
+                ><span data-hr="Mir za susjede od 22:00 do 07:00"
+                  >Quiet hours 22:00 – 07:00</span
+                >
+              </div>
+              <div
+                style="
+                  display: flex;
+                  gap: 14px;
+                  padding: 14px 0;
+                  border-top: 1px solid rgba(51, 41, 31, 0.14);
+                  font-size: 15px;
+                  color: #4a4033;
+                "
+              >
+                <span style="color: #94734a">◈</span
+                ><span data-hr="Najviše 2 gosta po apartmanu"
+                  >Up to 2 guests per apartment</span
+                >
+              </div>
+              <div
+                style="
+                  display: flex;
+                  gap: 14px;
+                  padding: 14px 0;
+                  border-top: 1px solid rgba(51, 41, 31, 0.14);
+                  font-size: 15px;
+                  color: #4a4033;
+                "
+              >
+                <span style="color: #94734a">◈</span>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  gap: 14px;
+                  padding: 14px 0;
+                  border-top: 1px solid rgba(51, 41, 31, 0.14);
+                  border-bottom: 1px solid rgba(51, 41, 31, 0.14);
+                  font-size: 15px;
+                  color: #4a4033;
+                "
+              >
+                <span style="color: #94734a">◈</span
+                ><span data-hr="Čuvajte prostor kao svoj dom"
+                  >Please treat the space as your own home</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== NEARBY / AREA GUIDE ===================== -->
+      <section id="nearby" style="background: #33291f; color: #e9e0d1">
+        <div
+          style="
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 78px clamp(20px, 4vw, 48px);
+          "
+        >
+          <div style="text-align: center; margin-bottom: 44px">
+            <div
+              data-hr="Okolica"
+              style="
+                font-size: 12px;
+                letter-spacing: 0.28em;
+                text-transform: uppercase;
+                color: #c2a86a;
+              "
+            >
+              Nearby
+            </div>
+            <h2
+              data-hr="Što razgledati u blizini"
+              style="
+                margin: 10px 0 0;
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: clamp(30px, 4vw, 40px);
+                font-weight: 500;
+                color: #fff;
+              "
+            >
+              Things to do around Posušje
+            </h2>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+              gap: 20px;
+            "
+          >
+            <div
+              style="
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                padding: 26px 24px;
+              "
+            >
+              <div
+                style="
+                  font-family: &quot;Cormorant Garamond&quot;, serif;
+                  font-size: 24px;
+                  color: #fff;
+                "
+              >
+                <span data-hr="Centar Posušja">Posušje town centre</span>
+              </div>
+              <div
+                data-hr="5 min pješice"
+                style="
+                  font-size: 12px;
+                  letter-spacing: 0.14em;
+                  text-transform: uppercase;
+                  color: #c2a86a;
+                  margin: 8px 0 12px;
+                "
+              >
+                5 min walk
+              </div>
+              <p
+                data-hr="Kafići, restorani, pekare i trgovine — sve na kratkoj šetnji od apartmana."
+                style="
+                  font-size: 14px;
+                  line-height: 1.6;
+                  color: #c7bca6;
+                  font-weight: 300;
+                  margin: 0;
+                "
+              >
+                Cafés, restaurants, bakeries and shops — all a short stroll from
+                the apartments.
+              </p>
+            </div>
+            <div
+              style="
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                padding: 26px 24px;
+              "
+            >
+              <div
+                style="
+                  font-family: &quot;Cormorant Garamond&quot;, serif;
+                  font-size: 24px;
+                  color: #fff;
+                "
+              >
+                <span data-hr="Park prirode Blidinje"
+                  >Blidinje Nature Park</span
+                >
+              </div>
+              <div
+                data-hr="≈ 45 min vožnje"
+                style="
+                  font-size: 12px;
+                  letter-spacing: 0.14em;
+                  text-transform: uppercase;
+                  color: #c2a86a;
+                  margin: 8px 0 12px;
+                "
+              >
+                ≈ 45 min drive
+              </div>
+              <p
+                data-hr="Planinski krajolici, staze i netaknuta priroda za dnevni izlet."
+                style="
+                  font-size: 14px;
+                  line-height: 1.6;
+                  color: #c7bca6;
+                  font-weight: 300;
+                  margin: 0;
+                "
+              >
+                Mountain landscapes, hiking trails and unspoilt nature for a day
+                trip.
+              </p>
+            </div>
+            <div
+              style="
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                padding: 26px 24px;
+              "
+            >
+              <div
+                style="
+                  font-family: &quot;Cormorant Garamond&quot;, serif;
+                  font-size: 24px;
+                  color: #fff;
+                "
+              >
+                <span data-hr="Slapovi Kravica">Kravica Waterfalls</span>
+              </div>
+              <div
+                data-hr="≈ 50 min vožnje"
+                style="
+                  font-size: 12px;
+                  letter-spacing: 0.14em;
+                  text-transform: uppercase;
+                  color: #c2a86a;
+                  margin: 8px 0 12px;
+                "
+              >
+                ≈ 50 min drive
+              </div>
+              <p
+                data-hr="Prekrasni slapovi savršeni za kupanje u toplim mjesecima."
+                style="
+                  font-size: 14px;
+                  line-height: 1.6;
+                  color: #c7bca6;
+                  font-weight: 300;
+                  margin: 0;
+                "
+              >
+                Beautiful cascades, perfect for a swim during the warmer months.
+              </p>
+            </div>
+            <div
+              style="
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                padding: 26px 24px;
+              "
+            >
+              <div
+                style="
+                  font-family: &quot;Cormorant Garamond&quot;, serif;
+                  font-size: 24px;
+                  color: #fff;
+                "
+              >
+                <span data-hr="Jadranska obala">Adriatic coast</span>
+              </div>
+              <div
+                data-hr="≈ 1 h vožnje"
+                style="
+                  font-size: 12px;
+                  letter-spacing: 0.14em;
+                  text-transform: uppercase;
+                  color: #c2a86a;
+                  margin: 8px 0 12px;
+                "
+              >
+                ≈ 1 h drive
+              </div>
+              <p
+                data-hr="Makarska rivijera i dalmatinske plaže nadohvat su za dnevni odmor uz more."
+                style="
+                  font-size: 14px;
+                  line-height: 1.6;
+                  color: #c7bca6;
+                  font-weight: 300;
+                  margin: 0;
+                "
+              >
+                The Makarska riviera and Dalmatian beaches are within reach for
+                a seaside day.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== CONTACT / BOOKING ===================== -->
+      <section
+        id="contact"
+        style="
+          max-width: 1240px;
+          margin: 0 auto;
+          padding: 80px clamp(20px, 4vw, 48px);
+        "
+      >
+        <div
+          class="g2"
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 52px;
+            align-items: start;
+          "
+        >
+          <div>
+            <div
+              data-hr="Kontakt"
+              style="
+                font-size: 12px;
+                letter-spacing: 0.28em;
+                text-transform: uppercase;
+                color: #94734a;
+              "
+            >
+              Contact
+            </div>
+            <h2
+              data-hr="Rezervirajte svoj termin"
+              style="
+                margin: 10px 0 20px;
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: clamp(30px, 4vw, 42px);
+                font-weight: 500;
+              "
+            >
+              Reserve your dates
+            </h2>
+            <p
+              data-hr="Rezervirajte izravno kod nas za najbolju cijenu — odgovaramo brzo. Nazovite, pošaljite poruku ili nas pronađite na platformama za rezervacije."
+              style="
+                font-size: 16px;
+                line-height: 1.7;
+                color: #655a49;
+                font-weight: 300;
+                margin: 0 0 30px;
+                max-width: 400px;
+              "
+            >
+              Book directly with us for the best rate — we reply fast. Call,
+              message, or find us on the booking platforms.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 18px">
+              <a
+                href="tel:+38763592672"
+                style="
+                  display: flex;
+                  gap: 14px;
+                  align-items: center;
+                  font-size: 17px;
+                  color: #33291f;
+                "
+                ><span style="color: #94734a; font-size: 14px">◈</span>+387 63
+                592 672</a
+              >
+              <a
+                href="mailto:milan.durisic79@gmail.com"
+                style="
+                  display: flex;
+                  gap: 14px;
+                  align-items: center;
+                  font-size: 17px;
+                  color: #33291f;
+                  word-break: break-all;
+                "
+                ><span style="color: #94734a; font-size: 14px">◈</span
+                >milan.durisic79@gmail.com</a
+              >
+              <a
+                href="https://wa.me/38763592672"
+                target="_blank"
+                rel="noopener"
+                style="
+                  display: flex;
+                  gap: 14px;
+                  align-items: center;
+                  font-size: 17px;
+                  color: #33291f;
+                "
+              >
+                <span style="color: #94734a; font-size: 14px">◈</span
+                >WhatsApp</a
+              >
+            </div>
+            <div style="display: flex; gap: 12px; margin-top: 30px">
+              <a
+                href="#"
+                data-hr="Booking.com"
+                style="
+                  background: #33291f;
+                  color: #f6f1e8;
+                  padding: 13px 24px;
+                  font-size: 13px;
+                  letter-spacing: 0.08em;
+                  text-transform: uppercase;
+                "
+                >Booking.com</a
+              >
+              <a
+                href="#"
+                data-hr="Airbnb"
+                style="
+                  border: 1px solid rgba(51, 41, 31, 0.3);
+                  color: #33291f;
+                  padding: 13px 24px;
+                  font-size: 13px;
+                  letter-spacing: 0.08em;
+                  text-transform: uppercase;
+                "
+                >Airbnb</a
+              >
+            </div>
+          </div>
+          <form
+            onSubmit="{{ submitForm }}"
+            style="
+              background: #efe7d8;
+              padding: 36px clamp(22px, 3vw, 36px);
+              display: flex;
+              flex-direction: column;
+              gap: 16px;
+            "
+          >
+            <div>
+              <label
+                data-hr="Ime"
+                style="
+                  display: block;
+                  font-size: 12px;
+                  letter-spacing: 0.12em;
+                  text-transform: uppercase;
+                  color: #8a7c68;
+                  margin-bottom: 7px;
+                "
+                >Name</label
+              >
+              <input
+                name="name"
+                type="text"
+                required
+                style="
+                  width: 100%;
+                  background: #f6f1e8;
+                  border: 1px solid rgba(51, 41, 31, 0.2);
+                  padding: 13px 14px;
+                  font-family: &quot;Jost&quot;, sans-serif;
+                  font-size: 15px;
+                  color: #33291f;
+                "
+              />
+            </div>
+            <div>
+              <label
+                data-hr="Email"
+                style="
+                  display: block;
+                  font-size: 12px;
+                  letter-spacing: 0.12em;
+                  text-transform: uppercase;
+                  color: #8a7c68;
+                  margin-bottom: 7px;
+                "
+                >Email</label
+              >
+              <input
+                name="email"
+                type="email"
+                required
+                style="
+                  width: 100%;
+                  background: #f6f1e8;
+                  border: 1px solid rgba(51, 41, 31, 0.2);
+                  padding: 13px 14px;
+                  font-family: &quot;Jost&quot;, sans-serif;
+                  font-size: 15px;
+                  color: #33291f;
+                "
+              />
+            </div>
+            <div style="display: flex; gap: 14px">
+              <div style="flex: 1">
+                <label
+                  data-hr="Datumi"
+                  style="
+                    display: block;
+                    font-size: 12px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    color: #8a7c68;
+                    margin-bottom: 7px;
+                  "
+                  >Dates</label
+                >
+                <input
+                  name="dates"
+                  type="text"
+                  placeholder="12–15 Aug"
+                  style="
+                    width: 100%;
+                    background: #f6f1e8;
+                    border: 1px solid rgba(51, 41, 31, 0.2);
+                    padding: 13px 14px;
+                    font-family: &quot;Jost&quot;, sans-serif;
+                    font-size: 15px;
+                    color: #33291f;
+                  "
+                />
+              </div>
+              <div style="flex: 1">
+                <label
+                  data-hr="Apartman"
+                  style="
+                    display: block;
+                    font-size: 12px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    color: #8a7c68;
+                    margin-bottom: 7px;
+                  "
+                  >Apartment</label
+                >
+                <select
+                  name="apartment"
+                  style="
+                    width: 100%;
+                    background: #f6f1e8;
+                    border: 1px solid rgba(51, 41, 31, 0.2);
+                    padding: 13px 14px;
+                    font-family: &quot;Jost&quot;, sans-serif;
+                    font-size: 15px;
+                    color: #33291f;
+                  "
+                >
+                  <option>Apartment 1</option>
+                  <option>Apartment 2</option>
+                  <option data-hr="Bilo koji">Either</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label
+                data-hr="Poruka"
+                style="
+                  display: block;
+                  font-size: 12px;
+                  letter-spacing: 0.12em;
+                  text-transform: uppercase;
+                  color: #8a7c68;
+                  margin-bottom: 7px;
+                "
+                >Message</label
+              >
+              <textarea
+                name="message"
+                rows="3"
+                style="
+                  width: 100%;
+                  background: #f6f1e8;
+                  border: 1px solid rgba(51, 41, 31, 0.2);
+                  padding: 13px 14px;
+                  font-family: &quot;Jost&quot;, sans-serif;
+                  font-size: 15px;
+                  color: #33291f;
+                  resize: vertical;
+                "
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              data-hr="Pošalji upit"
+              style="
+                background: #33291f;
+                color: #f6f1e8;
+                border: none;
+                padding: 15px;
+                font-family: &quot;Jost&quot;, sans-serif;
+                font-size: 13px;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                cursor: pointer;
+                margin-top: 4px;
+              "
+            >
+              Send enquiry
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ===================== FOOTER ===================== -->
+      <footer style="background: #26201a; color: #c7bca6">
+        <div
+          style="
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 54px clamp(20px, 4vw, 48px);
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 30px;
+          "
+          class="g3"
+        >
+          <div>
+            <div
+              style="
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: 26px;
+                color: #efe6d6;
+              "
+            >
+              Apartmani Đurišić
+            </div>
+            <p
+              data-hr="Posušje, Bosna i Hercegovina. Rezervirajte izravno za najbolju cijenu."
+              style="
+                font-size: 14px;
+                line-height: 1.6;
+                font-weight: 300;
+                margin: 12px 0 0;
+                max-width: 260px;
+              "
+            >
+              Posušje, Bosnia &amp; Herzegovina. Book directly for the best
+              rate.
+            </p>
+          </div>
+          <div style="font-size: 14px; line-height: 2.1">
+            <div
+              data-hr="Kontakt"
+              style="
+                font-size: 11px;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: #c2a86a;
+                margin-bottom: 6px;
+              "
+            >
+              Contact
+            </div>
+            +387 63 592 672<br />milan.durisic79@gmail.com
+          </div>
+          <div style="font-size: 14px; line-height: 2.1">
+            <div
+              data-hr="Pronađite nas"
+              style="
+                font-size: 11px;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: #c2a86a;
+                margin-bottom: 6px;
+              "
+            >
+              Find us
+            </div>
+            <a
+              href="https://maps.app.goo.gl/Pz1w7w1fs3aDFY3S8"
+              target="_blank"
+              rel="noopener"
+              style="color: #c7bca6"
+              >Google Maps</a
+            ><br />Booking.com · Airbnb
+          </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255, 255, 255, 0.1)">
+          <div
+            style="
+              max-width: 1240px;
+              margin: 0 auto;
+              padding: 20px clamp(20px, 4vw, 48px);
+              font-size: 12px;
+              color: #8a7f6c;
+            "
+          >
+            © 2026 Apartmani Đurišić · Posušje
+          </div>
+        </div>
+      </footer>
+
+      <!-- ===================== LIGHTBOX MODAL ===================== -->
+      <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+        <div
+          onClick="{{ closeLightbox }}"
+          style="
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(28, 20, 14, 0.94);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(16px, 4vw, 56px);
+            animation: fadeUp 0.28s ease both;
+          "
+        >
+          <button
+            onClick="{{ closeLightbox }}"
+            aria-label="Close"
+            style="
+              position: absolute;
+              top: 20px;
+              right: 26px;
+              background: none;
+              border: none;
+              color: #f6f1e8;
+              font-size: 40px;
+              line-height: 1;
+              cursor: pointer;
+              font-family: &quot;Jost&quot;, sans-serif;
+              font-weight: 300;
+            "
+          >
+            ×
+          </button>
+          <button
+            onClick="{{ lbPrev }}"
+            aria-label="Previous"
+            style="
+              position: absolute;
+              left: clamp(8px, 2vw, 28px);
+              top: 50%;
+              transform: translateY(-50%);
+              background: rgba(246, 241, 232, 0.12);
+              border: 1px solid rgba(246, 241, 232, 0.3);
+              color: #f6f1e8;
+              width: 52px;
+              height: 52px;
+              border-radius: 50%;
+              font-size: 28px;
+              line-height: 1;
+              cursor: pointer;
+              font-family: &quot;Jost&quot;, sans-serif;
+            "
+          >
+            ‹
+          </button>
+          <button
+            onClick="{{ lbNext }}"
+            aria-label="Next"
+            style="
+              position: absolute;
+              right: clamp(8px, 2vw, 28px);
+              top: 50%;
+              transform: translateY(-50%);
+              background: rgba(246, 241, 232, 0.12);
+              border: 1px solid rgba(246, 241, 232, 0.3);
+              color: #f6f1e8;
+              width: 52px;
+              height: 52px;
+              border-radius: 50%;
+              font-size: 28px;
+              line-height: 1;
+              cursor: pointer;
+              font-family: &quot;Jost&quot;, sans-serif;
+            "
+          >
+            ›
+          </button>
+          <img
+            onClick="{{ stopProp }}"
+            src="{{ lbSrc }}"
+            alt="{{ lbCap }}"
+            style="
+              max-width: min(1100px, 90vw);
+              max-height: 80vh;
+              object-fit: contain;
+              box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+            "
+          />
+          <div
+            onClick="{{ stopProp }}"
+            style="
+              margin-top: 18px;
+              display: flex;
+              align-items: center;
+              gap: 16px;
+              color: #e9e0d1;
+            "
+          >
+            <span
+              style="
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: 19px;
+              "
+              >{{ lbCap }}</span
+            >
+            <span
+              style="
+                width: 4px;
+                height: 4px;
+                border-radius: 50%;
+                background: #c2a86a;
+              "
+            ></span>
+            <span
+              style="font-size: 12px; letter-spacing: 0.16em; color: #b6a888"
+              >{{ lbCounter }}</span
+            >
+          </div>
+        </div>
+      </sc-if></x-dc
+    >
+    <script type="text/x-dc" data-dc-script>
+      class Component extends DCLogic {
+        state = { lbIndex: null };
+        lang = 'en';
+
+        componentDidMount() {
+          this.els = Array.from(document.querySelectorAll('[data-hr]'));
+          this.els.forEach(el => { el.dataset.en = el.textContent; });
+          document.addEventListener('keydown', this.onKey);
+        }
+        componentWillUnmount() {
+          document.removeEventListener('keydown', this.onKey);
+        }
+
+        onKey = (e) => {
+          if (this.state.lbIndex == null) return;
+          if (e.key === 'Escape') this.closeLightbox();
+          else if (e.key === 'ArrowRight') this.lbNext();
+          else if (e.key === 'ArrowLeft') this.lbPrev();
+        };
+        openLightbox = (e) => {
+          this.gallery = Array.from(document.querySelectorAll('[data-lb]'));
+          const idx = this.gallery.indexOf(e.currentTarget);
+          this.setState({ lbIndex: idx < 0 ? 0 : idx });
+        };
+        closeLightbox = () => this.setState({ lbIndex: null });
+        lbNext = (e) => { if (e) e.stopPropagation(); const n = (this.gallery || []).length; if (n) this.setState(s => ({ lbIndex: (s.lbIndex + 1) % n })); };
+        lbPrev = (e) => { if (e) e.stopPropagation(); const n = (this.gallery || []).length; if (n) this.setState(s => ({ lbIndex: (s.lbIndex - 1 + n) % n })); };
+        stopProp = (e) => e.stopPropagation();
+
+        renderVals() {
+          const i = this.state.lbIndex;
+          const list = this.gallery || [];
+          const open = i != null && list[i];
+          return {
+            lbOpen: !!open,
+            lbSrc: open ? list[i].getAttribute('src') : '',
+            lbCap: open ? (list[i].dataset.cap || '') : '',
+            lbCounter: open ? (i + 1) + ' / ' + list.length : '',
+            openLightbox: this.openLightbox,
+            closeLightbox: this.closeLightbox,
+            lbNext: this.lbNext,
+            lbPrev: this.lbPrev,
+            stopProp: this.stopProp,
+            toggleLang: () => {
+              this.lang = this.lang === 'hr' ? 'en' : 'hr';
+              (this.els || []).forEach(el => {
+                el.textContent = this.lang === 'hr' ? el.dataset.hr : el.dataset.en;
+              });
+              const lbl = document.getElementById('langlabel');
+              if (lbl) lbl.textContent = this.lang === 'hr' ? 'EN' : 'HR';
+              document.documentElement.lang = this.lang;
+            },
+            submitForm: (e) => {
+              e.preventDefault();
+              const f = e.target;
+              const g = n => (f.elements[n] && f.elements[n].value) || '';
+              const subject = encodeURIComponent('Booking enquiry — ' + (g('apartment') || 'Apartmani Đurišić'));
+              const body = encodeURIComponent(
+                'Name: ' + g('name') + '\n' +
+                'Email: ' + g('email') + '\n' +
+                'Dates: ' + g('dates') + '\n' +
+                'Apartment: ' + g('apartment') + '\n\n' +
+                g('message')
+              );
+              window.location.href = 'mailto:milan.durisic79@gmail.com?subject=' + subject + '&body=' + body;
+            }
+          };
+        }
       }
-    };
-  }
-}
-</script>
-</body>
+    </script>
+  </body>
 </html>

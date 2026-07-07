@@ -128,7 +128,6 @@ const jsonLd = {
     longitude: 17.3311,
   },
   hasMap: site.mapsPin,
-  petsAllowed: "On request",
   smokingAllowed: false,
   numberOfRooms: 2,
   checkinTime: "14:00",
