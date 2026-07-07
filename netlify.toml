@@ -1,11 +1,6 @@
 [build]
   command = "npm run build"
-  publish = ".next"
-
-# Official Next.js runtime for Netlify — handles SSR, image optimization,
-# routing and the App Router build output automatically.
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+  publish = "out"
 
 [build.environment]
   NODE_VERSION = "22"

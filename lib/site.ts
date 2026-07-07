@@ -17,6 +17,6 @@ export const site = {
   // TODO: replace with real listing URLs once available.
   bookingUrl: "#",
   airbnbUrl: "#",
-  // Used for canonical + Open Graph. Update to the real production domain.
-  url: "https://apartmani-djurisic.com",
+  // Used for canonical + Open Graph. Update to a custom domain if/when one is added.
+  url: "https://apartmani-djurisic.netlify.app",
 } as const;
