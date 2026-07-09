@@ -1,35 +1,77 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import emailjs from "@emailjs/browser";
 import { useLang } from "@/lib/i18n";
 import { site } from "@/lib/site";
+import { emailjsConfig, emailjsEnabled } from "@/lib/emailjs";
 import Reveal from "./Reveal";
+
+type Status = "idle" | "sending" | "success" | "error";
 
 export default function Contact() {
   const { t } = useLang();
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
 
-  // Prototype backend: opens the guest's mail client with a prefilled enquiry.
-  // TODO(production): swap for a real form endpoint (serverless / Formspree).
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
     const get = (k: string) => String(data.get(k) ?? "").trim();
 
     const apartment = get("apartment") || site.name;
-    const subject = encodeURIComponent(`Booking enquiry — ${apartment}`);
-    const body = encodeURIComponent(
-      `Name: ${get("name")}\n` +
-        `Email: ${get("email")}\n` +
-        `Dates: ${get("dates")}\n` +
-        `Apartment: ${apartment}\n\n` +
-        get("message")
-    );
+    const params = {
+      name: get("name"),
+      email: get("email"),
+      dates: get("dates") || "—",
+      apartment,
+      message: get("message") || "—",
+      title: `Booking enquiry — ${apartment}`,
+      to_email: site.email, // owner inbox (for the notification template)
+      reply_to: get("email"), // so replying goes straight to the guest
+    };
 
-    window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
-    setSent(true);
+    // Fallback for before EmailJS is configured: open the guest's mail client.
+    if (!emailjsEnabled) {
+      const subject = encodeURIComponent(params.title);
+      const body = encodeURIComponent(
+        `Name: ${params.name}\n` +
+          `Email: ${params.email}\n` +
+          `Dates: ${params.dates}\n` +
+          `Apartment: ${apartment}\n\n` +
+          params.message
+      );
+      window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
+      setStatus("success");
+      return;
+    }
+
+    try {
+      setStatus("sending");
+      // 1) Notify the owner.
+      await emailjs.send(
+        emailjsConfig.serviceId,
+        emailjsConfig.templateId,
+        params,
+        { publicKey: emailjsConfig.publicKey }
+      );
+      // 2) Optional auto-reply confirmation to the guest.
+      if (emailjsConfig.autoReplyTemplateId) {
+        await emailjs.send(
+          emailjsConfig.serviceId,
+          emailjsConfig.autoReplyTemplateId,
+          params,
+          { publicKey: emailjsConfig.publicKey }
+        );
+      }
+      form.reset();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   };
+
+  const sending = status === "sending";
 
   return (
     <section id="contact" className="contact-section" aria-labelledby="contact-h">
@@ -108,14 +150,29 @@ export default function Contact() {
               <label htmlFor="message">{t({ en: "Message", hr: "Poruka" })}</label>
               <textarea id="message" name="message" rows={3} />
             </div>
-            <button type="submit">
-              {t({ en: "Send enquiry", hr: "Pošalji upit" })}
+            <button type="submit" disabled={sending} aria-busy={sending}>
+              {sending
+                ? t({ en: "Sending…", hr: "Slanje…" })
+                : t({ en: "Send enquiry", hr: "Pošalji upit" })}
             </button>
-            {sent && (
+            {status === "success" && (
               <p className="form-note" role="status">
+                {emailjsEnabled
+                  ? t({
+                      en: "Thank you! Your enquiry has been sent — we'll get back to you shortly.",
+                      hr: "Hvala! Vaš upit je poslan — javljamo vam se uskoro.",
+                    })
+                  : t({
+                      en: "Thanks! Your email app should open with the enquiry ready to send.",
+                      hr: "Hvala! Vaša aplikacija za e-poštu trebala bi se otvoriti s pripremljenim upitom.",
+                    })}
+              </p>
+            )}
+            {status === "error" && (
+              <p className="form-note form-note--error" role="alert">
                 {t({
-                  en: "Thanks! Your email app should open with the enquiry ready to send.",
-                  hr: "Hvala! Vaša aplikacija za e-poštu trebala bi se otvoriti s pripremljenim upitom.",
+                  en: "Something went wrong sending your enquiry. Please email or call us directly.",
+                  hr: "Došlo je do pogreške pri slanju upita. Molimo pošaljite nam e-poštu ili nazovite izravno.",
                 })}
               </p>
             )}

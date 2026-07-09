@@ -839,10 +839,17 @@ h3 {
 .enquiry button:hover {
   background: #241c14;
 }
+.enquiry button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
 .form-note {
   font-size: 13px;
   color: var(--olive);
   margin: 2px 0 0;
+}
+.form-note--error {
+  color: #a8452f;
 }
 
 /* ================= FOOTER ================= */
