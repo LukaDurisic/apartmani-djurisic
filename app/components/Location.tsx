@@ -21,7 +21,7 @@ export default function Location() {
             <p>
               {t({
                 en: "The apartments are in Posušje, within reach of the town centre, cafés and shops. Blidinje nature park, Kravica falls and the Adriatic coast are all a comfortable drive away.",
-                hr: "Apartmani se nalaze u Posušju, nadohvat centra grada, kafića i trgovina. Dolina Blidinje, Kravica i jadranska obala su ugodna vožnja automobilom.",
+                hr: "Apartmani se nalaze u Posušju, nadohvat centra grada, kafića i trgovina. Park prirode Blidinje, Kravica i jadranska obala su ugodna vožnja automobilom.",
               })}
             </p>
             <div className="info-list">

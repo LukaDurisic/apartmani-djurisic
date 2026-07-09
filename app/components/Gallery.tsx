@@ -16,7 +16,7 @@ const CAP_1: Localized = {
 };
 const CAP_2: Localized = {
   en: "Apartment 2 · Cosy double",
-  hr: "Apartman 2 · Ugodni dvokrevetni",
+  hr: "Apartman 2 · Ugodni bračni",
 };
 
 const apt1: Photo[] = [
@@ -26,12 +26,7 @@ const apt1: Photo[] = [
     alt: { en: "Apartment 1 kitchen", hr: "Kuhinja apartmana 1" },
   },
   {
-    src: "/assets/IMG-20260702-WA0060.jpg",
-    cap: CAP_1,
-    alt: { en: "Kitchen", hr: "Kuhinja" },
-  },
-  {
-    src: "/assets/IMG-20260702-WA0058.jpg",
+    src: "/assets/IMG-20260703-WA0004.jpg",
     cap: CAP_1,
     alt: { en: "Bedroom", hr: "Spavaća soba" },
   },
@@ -40,10 +35,22 @@ const apt1: Photo[] = [
     cap: CAP_1,
     alt: { en: "Bedroom with window", hr: "Spavaća soba s prozorom" },
   },
+
   {
     src: "/assets/IMG-20260702-WA0056.jpg",
     cap: CAP_1,
     alt: { en: "Bathroom", hr: "Kupaonica" },
+  },
+
+  {
+    src: "/assets/IMG-20260702-WA0060.jpg",
+    cap: CAP_1,
+    alt: { en: "Kitchen", hr: "Kuhinja" },
+  },
+  {
+    src: "/assets/IMG-20260703-WA0007.jpg",
+    cap: CAP_1,
+    alt: { en: "Bedroom", hr: "Spavaća soba" },
   },
 
   {
@@ -194,7 +201,7 @@ export default function Gallery() {
       {renderBlock(
         apt2,
         apt1.length,
-        { en: "Cosy double", hr: "Ugodni dvokrevetni" },
+        { en: "Cosy double", hr: "Ugodni bračni" },
         "tag--olive",
         { en: "Apartment 2", hr: "Apartman 2" },
       )}

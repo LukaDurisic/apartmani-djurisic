@@ -35,8 +35,8 @@ const apartments: Apt[] = [
     name: { en: "Apartment 1", hr: "Apartman 1" },
     price: 50,
     desc: {
-      en: "A spacious stay for two with its own kitchenette — induction hob, sink and a dining nook. A comfortable double bed, a private bathroom and everything for a longer stay.",
-      hr: "Prostrani apartman za dvoje s vlastitom kuhinjom — indukcijska ploča, sudoper i kutak za blagovanje. Udoban bračni krevet, privatna kupaonica i sve za duži boravak.",
+      en: "A stay for two with its own kitchenette — induction hob, sink and a dining nook. A comfortable double bed, a private bathroom and everything for a longer stay.",
+      hr: "Apartman za dvoje s vlastitom kuhinjom — indukcijska ploča, sudoper i kutak za blagovanje. Udoban bračni krevet, privatna kupaonica i sve za duži boravak.",
     },
     chips: [
       { en: "Kitchenette", hr: "Kuhinja" },
@@ -47,7 +47,7 @@ const apartments: Apt[] = [
   {
     lead: "/assets/IMG-20260702-WA0053.jpg",
     leadAlt: { en: "Apartment 2 bedroom", hr: "Spavaća soba apartmana 2" },
-    tag: { en: "Cosy double", hr: "Ugodni dvokrevetni" },
+    tag: { en: "Cosy double", hr: "Ugodni bračni" },
     tagClass: "tag--olive",
     thumbs: [
       {
@@ -63,7 +63,7 @@ const apartments: Apt[] = [
     price: 45,
     desc: {
       en: "A serene double with soft textures and warm details. Its own private bathroom and every comfort — perfect for a short city break for two.",
-      hr: "Miran dvokrevetni apartman s mekim teksturama i toplim detaljima. Vlastita kupaonica i sve pogodnosti — savršen za kraći gradski predah za dvoje.",
+      hr: "Miran bračni apartman s mekim teksturama i toplim detaljima. Vlastita kupaonica i sve pogodnosti — savršen za kraći gradski predah za dvoje.",
     },
     chips: [
       { en: "Double bed", hr: "Bračni krevet" },
