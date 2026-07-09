@@ -1,16 +1,14 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import emailjs from "@emailjs/browser";
 import { useLang } from "@/lib/i18n";
 import { site } from "@/lib/site";
-import { emailjsConfig, emailjsEnabled } from "@/lib/emailjs";
 import Reveal from "./Reveal";
 
 type Status = "idle" | "sending" | "success" | "error";
 
 export default function Contact() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const [status, setStatus] = useState<Status>("idle");
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -19,51 +17,24 @@ export default function Contact() {
     const data = new FormData(form);
     const get = (k: string) => String(data.get(k) ?? "").trim();
 
-    const apartment = get("apartment") || site.name;
-    const params = {
+    const payload = {
       name: get("name"),
       email: get("email"),
-      dates: get("dates") || "—",
-      apartment,
-      message: get("message") || "—",
-      title: `Booking enquiry — ${apartment}`,
-      to_email: site.email, // owner inbox (for the notification template)
-      reply_to: get("email"), // so replying goes straight to the guest
+      dates: get("dates"),
+      apartment: get("apartment"),
+      message: get("message"),
+      company: get("company"), // honeypot
+      lang,
     };
-
-    // Fallback for before EmailJS is configured: open the guest's mail client.
-    if (!emailjsEnabled) {
-      const subject = encodeURIComponent(params.title);
-      const body = encodeURIComponent(
-        `Name: ${params.name}\n` +
-          `Email: ${params.email}\n` +
-          `Dates: ${params.dates}\n` +
-          `Apartment: ${apartment}\n\n` +
-          params.message
-      );
-      window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
-      setStatus("success");
-      return;
-    }
 
     try {
       setStatus("sending");
-      // 1) Notify the owner.
-      await emailjs.send(
-        emailjsConfig.serviceId,
-        emailjsConfig.templateId,
-        params,
-        { publicKey: emailjsConfig.publicKey }
-      );
-      // 2) Optional auto-reply confirmation to the guest.
-      if (emailjsConfig.autoReplyTemplateId) {
-        await emailjs.send(
-          emailjsConfig.serviceId,
-          emailjsConfig.autoReplyTemplateId,
-          params,
-          { publicKey: emailjsConfig.publicKey }
-        );
-      }
+      const res = await fetch(site.formEndpoint, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
       form.reset();
       setStatus("success");
     } catch {
@@ -112,7 +83,7 @@ export default function Contact() {
         </Reveal>
 
         <Reveal delay={100}>
-          <form className="enquiry" onSubmit={handleSubmit} noValidate={false}>
+          <form className="enquiry" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="name">{t({ en: "Name", hr: "Ime" })}</label>
               <input id="name" name="name" type="text" required autoComplete="name" />
@@ -150,6 +121,17 @@ export default function Contact() {
               <label htmlFor="message">{t({ en: "Message", hr: "Poruka" })}</label>
               <textarea id="message" name="message" rows={3} />
             </div>
+
+            {/* Honeypot: hidden from humans, bots tend to fill it. */}
+            <input
+              type="text"
+              name="company"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{ display: "none" }}
+            />
+
             <button type="submit" disabled={sending} aria-busy={sending}>
               {sending
                 ? t({ en: "Sending…", hr: "Slanje…" })
@@ -157,22 +139,17 @@ export default function Contact() {
             </button>
             {status === "success" && (
               <p className="form-note" role="status">
-                {emailjsEnabled
-                  ? t({
-                      en: "Thank you! Your enquiry has been sent — we'll get back to you shortly.",
-                      hr: "Hvala! Vaš upit je poslan — javljamo vam se uskoro.",
-                    })
-                  : t({
-                      en: "Thanks! Your email app should open with the enquiry ready to send.",
-                      hr: "Hvala! Vaša aplikacija za e-poštu trebala bi se otvoriti s pripremljenim upitom.",
-                    })}
+                {t({
+                  en: "Thank you! Your enquiry has been sent — we'll get back to you shortly. Check your inbox for a confirmation.",
+                  hr: "Hvala! Vaš upit je poslan — javljamo vam se uskoro. Provjerite svoju e-poštu za potvrdu.",
+                })}
               </p>
             )}
             {status === "error" && (
               <p className="form-note form-note--error" role="alert">
                 {t({
-                  en: "Something went wrong sending your enquiry. Please email or call us directly.",
-                  hr: "Došlo je do pogreške pri slanju upita. Molimo pošaljite nam e-poštu ili nazovite izravno.",
+                  en: "Sorry, something went wrong sending your enquiry. Please email or call us directly.",
+                  hr: "Nažalost, došlo je do pogreške pri slanju upita. Molimo pošaljite nam e-poštu ili nazovite izravno.",
                 })}
               </p>
             )}

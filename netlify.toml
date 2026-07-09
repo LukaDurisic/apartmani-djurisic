@@ -4,3 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# Serverless function that emails enquiries (see netlify/functions/send-enquiry.mjs).
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"

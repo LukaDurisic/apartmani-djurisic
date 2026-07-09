@@ -19,4 +19,7 @@ export const site = {
   airbnbUrl: "#",
   // Used for canonical + Open Graph. Update to a custom domain if/when one is added.
   url: "https://apartmani-djurisic.netlify.app",
+  // Enquiry form backend: our own Netlify serverless function that emails via
+  // Gmail. No third-party form service. See SETUP-EMAIL.md.
+  formEndpoint: "/.netlify/functions/send-enquiry",
 } as const;
