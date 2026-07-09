@@ -38,14 +38,6 @@ const spots: Spot[] = [
       hr: "Planinski krajolici, staze i netaknuta priroda za dnevni izlet.",
     },
   },
-  {
-    title: { en: "Adriatic coast", hr: "Jadranska obala" },
-    distance: { en: "≈ 1 h drive", hr: "≈ 1 h vožnje" },
-    desc: {
-      en: "The Makarska riviera and Dalmatian beaches are within reach for a seaside day.",
-      hr: "Makarska rivijera i dalmatinske plaže nadohvat su za dnevni odmor uz more.",
-    },
-  },
 ];
 
 export default function Nearby() {
