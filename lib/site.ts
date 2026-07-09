@@ -28,8 +28,8 @@ export const site = {
   currency: "EUR",
   sleeps: 2,
   bookingUrl: "https://www.booking.com/hotel/ba/apartmani-durisic.html",
-  // Used for canonical + Open Graph. Update to a custom domain if/when one is added.
-  url: "https://apartmani-djurisic.netlify.app",
+  // Primary domain — drives canonical, Open Graph, sitemap, robots and JSON-LD.
+  url: "https://durisic.com",
   // Enquiry form backend: our own Netlify serverless function that emails via
   // Gmail. No third-party form service. See SETUP-EMAIL.md.
   formEndpoint: "/.netlify/functions/send-enquiry",
