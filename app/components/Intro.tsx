@@ -12,8 +12,8 @@ export default function Intro() {
         <div className="eyebrow">{t({ en: "Welcome", hr: "Dobrodošli" })}</div>
         <p>
           {t({
-            en: "Two thoughtfully finished apartments, each for two guests, on a quiet spot within reach of the centre of Posušje. Natural oak, soft neutral tones and every modern comfort — your calm home away from home.",
-            hr: "Dva pažljivo uređena apartmana, svaki za dvije osobe, smještena na tihoj lokaciji nadohvat centra Posušja. Prirodni hrast, mekane neutralne boje i sve moderne pogodnosti — vaš mirni dom daleko od doma.",
+            en: "Apartmani Đurišić offers apartments in Posušje for both short and longer stays — two thoughtfully finished apartments, each for two guests, on a quiet spot within reach of the town centre. Soft neutral tones and every modern comfort — whether for a night or a longer break, your calm home away from home.",
+            hr: "Apartmani Đurišić nude stan na dan, ali i smještaj za duži boravak u Posušju — dva pažljivo uređena apartmana, svaki za dvije osobe, na tihoj lokaciji nadohvat centra grada. Mekane neutralne boje i sve moderne pogodnosti — bilo za jednu noć ili duži odmor, vaš mirni dom daleko od doma.",
           })}
         </p>
       </Reveal>

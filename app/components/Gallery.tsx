@@ -20,23 +20,67 @@ const CAP_2: Localized = {
 };
 
 const apt1: Photo[] = [
-  { src: "/assets/IMG-20260705-WA0002.jpg", cap: CAP_1, alt: { en: "Apartment 1 kitchen", hr: "Kuhinja apartmana 1" } },
-  { src: "/assets/IMG-20260702-WA0060.jpg", cap: CAP_1, alt: { en: "Kitchen", hr: "Kuhinja" } },
-  { src: "/assets/IMG-20260702-WA0058.jpg", cap: CAP_1, alt: { en: "Bedroom", hr: "Spavaća soba" } },
-  { src: "/assets/IMG-20260702-WA0061.jpg", cap: CAP_1, alt: { en: "Bedroom with window", hr: "Spavaća soba s prozorom" } },
-  { src: "/assets/IMG-20260702-WA0056.jpg", cap: CAP_1, alt: { en: "Bathroom", hr: "Kupaonica" } },
-  { src: "/assets/IMG-20260702-WA0059.jpg", cap: CAP_1, alt: { en: "Bathroom shower", hr: "Tuš u kupaonici" } },
-  { src: "/assets/IMG-20260703-WA0007.jpg", cap: CAP_1, alt: { en: "Kitchen detail", hr: "Detalj kuhinje" } },
-  { src: "/assets/IMG-20260703-WA0006.jpg", cap: CAP_1, alt: { en: "Lamp detail", hr: "Detalj lampe" } },
+  {
+    src: "/assets/IMG-20260705-WA0002.jpg",
+    cap: CAP_1,
+    alt: { en: "Apartment 1 kitchen", hr: "Kuhinja apartmana 1" },
+  },
+  {
+    src: "/assets/IMG-20260702-WA0060.jpg",
+    cap: CAP_1,
+    alt: { en: "Kitchen", hr: "Kuhinja" },
+  },
+  {
+    src: "/assets/IMG-20260702-WA0058.jpg",
+    cap: CAP_1,
+    alt: { en: "Bedroom", hr: "Spavaća soba" },
+  },
+  {
+    src: "/assets/IMG-20260702-WA0061.jpg",
+    cap: CAP_1,
+    alt: { en: "Bedroom with window", hr: "Spavaća soba s prozorom" },
+  },
+  {
+    src: "/assets/IMG-20260702-WA0056.jpg",
+    cap: CAP_1,
+    alt: { en: "Bathroom", hr: "Kupaonica" },
+  },
+
+  {
+    src: "/assets/IMG-20260703-WA0006.jpg",
+    cap: CAP_1,
+    alt: { en: "Lamp detail", hr: "Detalj lampe" },
+  },
 ];
 
 const apt2: Photo[] = [
-  { src: "/assets/IMG-20260702-WA0049.jpg", cap: CAP_2, alt: { en: "Bedroom", hr: "Spavaća soba" } },
-  { src: "/assets/IMG-20260705-WA0000.jpg", cap: CAP_2, alt: { en: "Bedroom with mirror", hr: "Spavaća soba s ogledalom" } },
-  { src: "/assets/IMG-20260702-WA0052.jpg", cap: CAP_2, alt: { en: "Bedroom", hr: "Spavaća soba" } },
-  { src: "/assets/IMG-20260702-WA0050.jpg", cap: CAP_2, alt: { en: "Bathroom", hr: "Kupaonica" } },
-  { src: "/assets/IMG-20260702-WA0051.jpg", cap: CAP_2, alt: { en: "Bathroom shower", hr: "Tuš u kupaonici" } },
-  { src: "/assets/IMG-20260705-WA0001.jpg", cap: CAP_2, alt: { en: "Orchid detail", hr: "Detalj orhideje" } },
+  {
+    src: "/assets/IMG-20260705-WA0000.jpg",
+    cap: CAP_2,
+    alt: { en: "Bedroom with mirror", hr: "Spavaća soba s ogledalom" },
+  },
+  {
+    src: "/assets/IMG-20260705-WA0001.jpg",
+    cap: CAP_2,
+    alt: { en: "Orchid detail", hr: "Detalj orhideje" },
+  },
+
+  {
+    src: "/assets/IMG-20260702-WA0052.jpg",
+    cap: CAP_2,
+    alt: { en: "Bedroom", hr: "Spavaća soba" },
+  },
+  { src: "/assets/tvapt2.jpeg", cap: CAP_2, alt: { en: "TV", hr: "TV" } },
+  {
+    src: "/assets/IMG-20260702-WA0051.jpg",
+    cap: CAP_2,
+    alt: { en: "Bathroom shower", hr: "Tuš u kupaonici" },
+  },
+  {
+    src: "/assets/IMG-20260702-WA0049.jpg",
+    cap: CAP_2,
+    alt: { en: "Bedroom", hr: "Spavaća soba" },
+  },
 ];
 
 // Single ordered list drives lightbox indexing across both blocks.
@@ -50,14 +94,14 @@ export default function Gallery() {
   const close = useCallback(() => setIndex(null), []);
   const next = useCallback(
     () => setIndex((i) => (i === null ? i : (i + 1) % allPhotos.length)),
-    []
+    [],
   );
   const prev = useCallback(
     () =>
       setIndex((i) =>
-        i === null ? i : (i - 1 + allPhotos.length) % allPhotos.length
+        i === null ? i : (i - 1 + allPhotos.length) % allPhotos.length,
       ),
-    []
+    [],
   );
 
   // Keyboard controls + body scroll lock while the lightbox is open.
@@ -82,7 +126,7 @@ export default function Gallery() {
     offset: number,
     tag: Localized,
     tagClass: string,
-    name: Localized
+    name: Localized,
   ) => (
     <>
       <div className="gallery-block-head">
@@ -99,13 +143,20 @@ export default function Gallery() {
               key={p.src}
               className={`gallery-item${i === 0 ? " feature" : ""}`}
               onClick={() => setIndex(globalIndex)}
-              aria-label={t({ en: "View larger photo", hr: "Prikaži veću fotografiju" })}
+              aria-label={t({
+                en: "View larger photo",
+                hr: "Prikaži veću fotografiju",
+              })}
             >
               <Image
                 src={p.src}
                 alt={t(p.alt)}
                 fill
-                sizes={i === 0 ? "(max-width: 880px) 100vw, 460px" : "(max-width: 880px) 50vw, 230px"}
+                sizes={
+                  i === 0
+                    ? "(max-width: 880px) 100vw, 460px"
+                    : "(max-width: 880px) 50vw, 230px"
+                }
               />
             </button>
           );
@@ -115,10 +166,16 @@ export default function Gallery() {
   );
 
   return (
-    <section id="gallery" className="gallery-section" aria-labelledby="gallery-h">
+    <section
+      id="gallery"
+      className="gallery-section"
+      aria-labelledby="gallery-h"
+    >
       <div className="gallery-head">
         <div className="eyebrow">{t({ en: "Gallery", hr: "Galerija" })}</div>
-        <h2 id="gallery-h">{t({ en: "A closer look", hr: "Pogled izbliza" })}</h2>
+        <h2 id="gallery-h">
+          {t({ en: "A closer look", hr: "Pogled izbliza" })}
+        </h2>
         <p>
           {t({
             en: "Click any photo to view it larger.",
@@ -132,14 +189,14 @@ export default function Gallery() {
         0,
         { en: "With kitchen", hr: "S kuhinjom" },
         "tag--espresso",
-        { en: "Apartment 1", hr: "Apartman 1" }
+        { en: "Apartment 1", hr: "Apartman 1" },
       )}
       {renderBlock(
         apt2,
         apt1.length,
         { en: "Cosy double", hr: "Ugodni dvokrevetni" },
         "tag--olive",
-        { en: "Apartment 2", hr: "Apartman 2" }
+        { en: "Apartment 2", hr: "Apartman 2" },
       )}
 
       {open && index !== null && (

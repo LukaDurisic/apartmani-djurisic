@@ -33,9 +33,12 @@ export default function Location() {
                   <strong>{t({ en: "Address", hr: "Adresa" })}</strong>
                   <br />
                   <span className="val">
+                    {site.address.street}, {site.address.postalCode}{" "}
+                    {site.address.locality}
+                    <br />
                     {t({
-                      en: "Posušje, Bosnia & Herzegovina",
-                      hr: "Posušje, Bosna i Hercegovina",
+                      en: "Bosnia & Herzegovina",
+                      hr: "Bosna i Hercegovina",
                     })}
                   </span>
                 </div>

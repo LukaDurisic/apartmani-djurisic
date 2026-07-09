@@ -18,9 +18,9 @@ const jost = Jost({
   display: "swap",
 });
 
-const title = "Apartmani Đurišić — Apartments in Posušje, Bosnia & Herzegovina";
+const title = "Apartmani Đurišić — stan na dan i apartmani u Posušju";
 const description =
-  "Apartmani Đurišić — two calm, freshly finished apartments for two in the heart of Posušje, Bosnia & Herzegovina. Free WiFi, air conditioning, private bathroom, free parking, steps from the town centre. From €45 / night. Book directly for the best rate.";
+  "Apartmani Đurišić — stan na dan u Posušju, BiH. Dva mirna, novouređena apartmana za dvoje na korak od centra grada — besplatni WiFi, klima, privatna kupaonica i besplatan parking. Od €45 po noći. Rezervirajte izravno za najbolju cijenu. Short-stay apartments in Posušje, Bosnia & Herzegovina.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -52,6 +52,11 @@ export const metadata: Metadata = {
     "apartman za dvoje Posušje",
     "privatni smještaj Posušje",
     "noćenje Posušje",
+    "stan na dan",
+    "stan na dan Posušje",
+    "posušje stan na dan",
+    "posusje stan na dan",
+    "stan na dan posušje",
   ],
   authors: [{ name: site.name }],
   creator: site.name,
@@ -65,8 +70,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
-    alternateLocale: ["hr_HR"],
+    locale: "hr_HR",
+    alternateLocale: ["en_US"],
     url: site.url,
     siteName: site.name,
     title,
@@ -76,7 +81,7 @@ export const metadata: Metadata = {
         url: "/assets/IMG-20260702-WA0055.jpg",
         width: 1200,
         height: 900,
-        alt: "Apartmani Đurišić — bedroom in Posušje",
+        alt: "Apartmani Đurišić — spavaća soba, stan na dan u Posušju",
       },
     ],
   },
@@ -114,20 +119,28 @@ const jsonLd = {
   url: site.url,
   telephone: site.phone,
   email: site.email,
-  image: [`${site.url}/assets/IMG-20260702-WA0055.jpg`],
-  priceRange: "€€",
+  image: [
+    `${site.url}/assets/IMG-20260702-WA0055.jpg`,
+    `${site.url}/assets/IMG-20260705-WA0002.jpg`,
+    `${site.url}/assets/IMG-20260702-WA0049.jpg`,
+  ],
+  priceRange: "€45–€50",
   currenciesAccepted: "EUR",
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Posušje",
-    addressCountry: "BA",
+    streetAddress: site.address.street,
+    postalCode: site.address.postalCode,
+    addressLocality: site.address.locality,
+    addressCountry: site.address.countryCode,
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 43.4731,
-    longitude: 17.3311,
+    latitude: site.geo.lat,
+    longitude: site.geo.lng,
   },
   hasMap: site.mapsPin,
+  // Link the entity to its Booking.com listing (helps Google connect profiles).
+  sameAs: [site.bookingUrl],
   smokingAllowed: false,
   numberOfRooms: 2,
   checkinTime: "14:00",
@@ -162,6 +175,28 @@ const jsonLd = {
       availability: "https://schema.org/InStock",
     },
   ],
+  // The two individual units.
+  containsPlace: [
+    {
+      "@type": "Accommodation",
+      name: "Apartment 1 — with kitchen",
+      occupancy: { "@type": "QuantitativeValue", maxValue: 2, unitText: "guests" },
+      numberOfBedrooms: 1,
+      amenityFeature: [
+        { "@type": "LocationFeatureSpecification", name: "Kitchenette", value: true },
+        { "@type": "LocationFeatureSpecification", name: "Private bathroom", value: true },
+      ],
+    },
+    {
+      "@type": "Accommodation",
+      name: "Apartment 2 — cosy double",
+      occupancy: { "@type": "QuantitativeValue", maxValue: 2, unitText: "guests" },
+      numberOfBedrooms: 1,
+      amenityFeature: [
+        { "@type": "LocationFeatureSpecification", name: "Private bathroom", value: true },
+      ],
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -170,7 +205,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
+    <html lang="hr" className={`${cormorant.variable} ${jost.variable}`}>
       <body>
         <script
           type="application/ld+json"

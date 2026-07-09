@@ -10,6 +10,17 @@ export const site = {
   mapsPin: "https://maps.app.goo.gl/Pz1w7w1fs3aDFY3S8",
   mapEmbed:
     "https://www.google.com/maps?q=Posu%C5%A1je,%20Bosnia%20and%20Herzegovina&z=14&output=embed",
+  // Real postal address — kept consistent across the page, footer and structured
+  // data (NAP consistency helps local search).
+  address: {
+    street: "Zagrebačka 24",
+    postalCode: "88240",
+    locality: "Posušje",
+    country: "Bosnia & Herzegovina",
+    countryCode: "BA",
+  },
+  // Precise coordinates (from the property's Google Maps pin).
+  geo: { lat: 43.475736, lng: 17.324516 },
   // Pricing (EUR / night). Apartment 1 is €50, Apartment 2 is €45 — so "from €45".
   priceFrom: 45,
   priceApt1: 50,

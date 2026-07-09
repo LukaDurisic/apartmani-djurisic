@@ -20,7 +20,7 @@ export default function Hero() {
           {/* The place name is emphasised in olive italic, per the design. */}
           <h1>
             {t({ en: "Two calm rooms in the heart of ", hr: "Dva mirna apartmana u srcu " })}
-            <em>Posušja</em>
+            <em>{t({ en: "Posušje", hr: "Posušja" })}</em>
             {t({ en: ".", hr: "." })}
           </h1>
           <p className="hero-lead">

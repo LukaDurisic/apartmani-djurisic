@@ -23,14 +23,20 @@ const apartments: Apt[] = [
     tag: { en: "With kitchen", hr: "S kuhinjom" },
     tagClass: "tag--espresso",
     thumbs: [
-      { src: "/assets/IMG-20260702-WA0060.jpg", alt: { en: "Kitchen", hr: "Kuhinja" } },
-      { src: "/assets/IMG-20260702-WA0061.jpg", alt: { en: "Bedroom", hr: "Spavaća soba" } },
+      {
+        src: "/assets/IMG-20260702-WA0056.jpg",
+        alt: { en: "Bathroom", hr: "Kupaonica" },
+      },
+      {
+        src: "/assets/IMG-20260702-WA0061.jpg",
+        alt: { en: "Bedroom", hr: "Spavaća soba" },
+      },
     ],
     name: { en: "Apartment 1", hr: "Apartman 1" },
     price: 50,
     desc: {
-      en: "A spacious stay for two with its own kitchenette — induction hob, sink and a dining nook. A comfortable double bed, marble bathroom and everything for a longer stay.",
-      hr: "Prostrani apartman za dvoje s vlastitom kuhinjom — indukcijska ploča, sudoper i kutak za blagovanje. Udoban bračni krevet, mramorna kupaonica i sve za duži boravak.",
+      en: "A spacious stay for two with its own kitchenette — induction hob, sink and a dining nook. A comfortable double bed, a private bathroom and everything for a longer stay.",
+      hr: "Prostrani apartman za dvoje s vlastitom kuhinjom — indukcijska ploča, sudoper i kutak za blagovanje. Udoban bračni krevet, privatna kupaonica i sve za duži boravak.",
     },
     chips: [
       { en: "Kitchenette", hr: "Kuhinja" },
@@ -39,19 +45,25 @@ const apartments: Apt[] = [
     ],
   },
   {
-    lead: "/assets/IMG-20260702-WA0049.jpg",
+    lead: "/assets/IMG-20260702-WA0053.jpg",
     leadAlt: { en: "Apartment 2 bedroom", hr: "Spavaća soba apartmana 2" },
     tag: { en: "Cosy double", hr: "Ugodni dvokrevetni" },
     tagClass: "tag--olive",
     thumbs: [
-      { src: "/assets/IMG-20260702-WA0052.jpg", alt: { en: "Bedroom", hr: "Spavaća soba" } },
-      { src: "/assets/IMG-20260702-WA0050.jpg", alt: { en: "Bathroom", hr: "Kupaonica" } },
+      {
+        src: "/assets/IMG-20260702-WA0051.jpg",
+        alt: { en: "Bathroom", hr: "Kupaonica" },
+      },
+      {
+        src: "/assets/IMG-20260702-WA0052.jpg",
+        alt: { en: "Bedroom", hr: "Spavaća soba" },
+      },
     ],
     name: { en: "Apartment 2", hr: "Apartman 2" },
     price: 45,
     desc: {
-      en: "A serene double with soft textures and warm details. Its own marble bathroom and every comfort — perfect for a short city break for two.",
-      hr: "Miran dvokrevetni apartman s mekim teksturama i toplim detaljima. Vlastita mramorna kupaonica i sve pogodnosti — savršen za kraći gradski predah za dvoje.",
+      en: "A serene double with soft textures and warm details. Its own private bathroom and every comfort — perfect for a short city break for two.",
+      hr: "Miran dvokrevetni apartman s mekim teksturama i toplim detaljima. Vlastita kupaonica i sve pogodnosti — savršen za kraći gradski predah za dvoje.",
     },
     chips: [
       { en: "Double bed", hr: "Bračni krevet" },
@@ -65,7 +77,11 @@ export default function Apartments() {
   const { t } = useLang();
 
   return (
-    <section id="apartments" className="apt-section" aria-labelledby="apartments-h">
+    <section
+      id="apartments"
+      className="apt-section"
+      aria-labelledby="apartments-h"
+    >
       <div className="section-head">
         <h2 id="apartments-h">
           {t({ en: "The two apartments", hr: "Naša dva apartmana" })}

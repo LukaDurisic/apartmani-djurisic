@@ -23,8 +23,9 @@ type LangContextValue = {
 const LangContext = createContext<LangContextValue | null>(null);
 
 export function LangProvider({ children }: { children: ReactNode }) {
-  // Default to English so the server-rendered HTML is English — good for SEO.
-  const [lang, setLang] = useState<Lang>("en");
+  // Default to Croatian — the primary audience. The server-rendered HTML is
+  // therefore Croatian; visitors can switch to English with the toggle.
+  const [lang, setLang] = useState<Lang>("hr");
 
   const toggle = useCallback(() => {
     setLang((prev) => (prev === "en" ? "hr" : "en"));
