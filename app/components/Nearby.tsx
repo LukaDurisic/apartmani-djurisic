@@ -15,19 +15,27 @@ const spots: Spot[] = [
     },
   },
   {
+    title: { en: "Svadbena sala Bagušić", hr: "Svadbena sala Bagušić" },
+    distance: { en: "5 min walk", hr: "5 min pješice" },
+    desc: {
+      en: "A wedding and events venue just a short walk away — handy if you're here for a celebration.",
+      hr: "Dvorana za vjenčanja i proslave na kratkoj šetnji — praktično ako ste tu zbog proslave.",
+    },
+  },
+  {
+    title: { en: "Svadbena sala Viktorija", hr: "Svadbena sala Viktorija" },
+    distance: { en: "5 min walk", hr: "5 min pješice" },
+    desc: {
+      en: "Another celebration venue nearby — convenient for guests attending weddings and events.",
+      hr: "Još jedna dvorana za proslave u blizini — pogodna za goste na vjenčanjima i događanjima.",
+    },
+  },
+  {
     title: { en: "Blidinje Nature Park", hr: "Park prirode Blidinje" },
     distance: { en: "≈ 45 min drive", hr: "≈ 45 min vožnje" },
     desc: {
       en: "Mountain landscapes, hiking trails and unspoilt nature for a day trip.",
       hr: "Planinski krajolici, staze i netaknuta priroda za dnevni izlet.",
-    },
-  },
-  {
-    title: { en: "Kravica Waterfalls", hr: "Slapovi Kravica" },
-    distance: { en: "≈ 50 min drive", hr: "≈ 50 min vožnje" },
-    desc: {
-      en: "Beautiful cascades, perfect for a swim during the warmer months.",
-      hr: "Prekrasni slapovi savršeni za kupanje u toplim mjesecima.",
     },
   },
   {

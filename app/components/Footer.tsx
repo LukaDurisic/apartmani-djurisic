@@ -30,7 +30,9 @@ export default function Footer() {
             Google Maps
           </a>
           <br />
-          Booking.com · Airbnb
+          <a href={site.bookingUrl} target="_blank" rel="noopener">
+            Booking.com
+          </a>
         </div>
       </div>
       <div className="footer-bottom">

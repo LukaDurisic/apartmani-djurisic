@@ -1,5 +1,4 @@
 // Central place for the owner's real contact + booking data.
-// Placeholders (Booking.com / Airbnb) are marked — swap for real listing URLs.
 export const site = {
   name: "Apartmani Đurišić",
   city: "Posušje",
@@ -11,12 +10,13 @@ export const site = {
   mapsPin: "https://maps.app.goo.gl/Pz1w7w1fs3aDFY3S8",
   mapEmbed:
     "https://www.google.com/maps?q=Posu%C5%A1je,%20Bosnia%20and%20Herzegovina&z=14&output=embed",
-  pricePerNight: 100,
+  // Pricing (EUR / night). Apartment 1 is €50, Apartment 2 is €45 — so "from €45".
+  priceFrom: 45,
+  priceApt1: 50,
+  priceApt2: 45,
   currency: "EUR",
   sleeps: 2,
-  // TODO: replace with real listing URLs once available.
-  bookingUrl: "#",
-  airbnbUrl: "#",
+  bookingUrl: "https://www.booking.com/hotel/ba/apartmani-durisic.html",
   // Used for canonical + Open Graph. Update to a custom domain if/when one is added.
   url: "https://apartmani-djurisic.netlify.app",
   // Enquiry form backend: our own Netlify serverless function that emails via

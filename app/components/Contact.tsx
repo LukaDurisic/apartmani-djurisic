@@ -73,11 +73,13 @@ export default function Contact() {
             </a>
           </div>
           <div className="platforms">
-            <a href={site.bookingUrl} className="btn btn-solid">
-              Booking.com
-            </a>
-            <a href={site.airbnbUrl} className="btn btn-outline">
-              Airbnb
+            <a
+              href={site.bookingUrl}
+              target="_blank"
+              rel="noopener"
+              className="btn btn-solid"
+            >
+              {t({ en: "View on Booking.com", hr: "Pogledaj na Booking.com" })}
             </a>
           </div>
         </Reveal>

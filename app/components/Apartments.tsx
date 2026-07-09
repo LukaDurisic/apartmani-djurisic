@@ -11,6 +11,7 @@ type Apt = {
   tagClass: "tag--espresso" | "tag--olive";
   thumbs: { src: string; alt: Localized }[];
   name: Localized;
+  price: number;
   desc: Localized;
   chips: Localized[];
 };
@@ -26,6 +27,7 @@ const apartments: Apt[] = [
       { src: "/assets/IMG-20260702-WA0061.jpg", alt: { en: "Bedroom", hr: "Spavaća soba" } },
     ],
     name: { en: "Apartment 1", hr: "Apartman 1" },
+    price: 50,
     desc: {
       en: "A spacious stay for two with its own kitchenette — induction hob, sink and a dining nook. A comfortable double bed, marble bathroom and everything for a longer stay.",
       hr: "Prostrani apartman za dvoje s vlastitom kuhinjom — indukcijska ploča, sudoper i kutak za blagovanje. Udoban bračni krevet, mramorna kupaonica i sve za duži boravak.",
@@ -46,6 +48,7 @@ const apartments: Apt[] = [
       { src: "/assets/IMG-20260702-WA0050.jpg", alt: { en: "Bathroom", hr: "Kupaonica" } },
     ],
     name: { en: "Apartment 2", hr: "Apartman 2" },
+    price: 45,
     desc: {
       en: "A serene double with soft textures and warm details. Its own marble bathroom and every comfort — perfect for a short city break for two.",
       hr: "Miran dvokrevetni apartman s mekim teksturama i toplim detaljima. Vlastita mramorna kupaonica i sve pogodnosti — savršen za kraći gradski predah za dvoje.",
@@ -104,7 +107,13 @@ export default function Apartments() {
                 </div>
               ))}
             </div>
-            <h3>{t(apt.name)}</h3>
+            <div className="apt-namerow">
+              <h3>{t(apt.name)}</h3>
+              <div className="apt-price">
+                €{apt.price}
+                <span>{t({ en: " / night", hr: " / noć" })}</span>
+              </div>
+            </div>
             <p>{t(apt.desc)}</p>
             <div className="chips">
               {apt.chips.map((c) => (

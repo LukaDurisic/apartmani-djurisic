@@ -51,7 +51,7 @@ export default function Hero() {
           />
           <div className="pricebadge">
             <div className="price">
-              €100
+              <span className="from">{t({ en: "from", hr: "od" })}</span> €45
               <span>{t({ en: " / night", hr: " / noć" })}</span>
             </div>
             <div className="sub">

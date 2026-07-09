@@ -20,7 +20,7 @@ const jost = Jost({
 
 const title = "Apartmani Đurišić — Apartments in Posušje, Bosnia & Herzegovina";
 const description =
-  "Apartmani Đurišić — two calm, freshly finished apartments for two in the heart of Posušje, Bosnia & Herzegovina. Free WiFi, air conditioning, private bathroom, free parking, steps from the town centre. From €100 / night. Book directly for the best rate.";
+  "Apartmani Đurišić — two calm, freshly finished apartments for two in the heart of Posušje, Bosnia & Herzegovina. Free WiFi, air conditioning, private bathroom, free parking, steps from the town centre. From €45 / night. Book directly for the best rate.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -146,13 +146,22 @@ const jsonLd = {
     name,
     value: true,
   })),
-  makesOffer: {
-    "@type": "Offer",
-    priceCurrency: "EUR",
-    price: site.pricePerNight,
-    description: "Per apartment, per night, sleeps 2",
-    availability: "https://schema.org/InStock",
-  },
+  makesOffer: [
+    {
+      "@type": "Offer",
+      priceCurrency: "EUR",
+      price: site.priceApt1,
+      description: "Apartment 1 (with kitchen) — per night, sleeps 2",
+      availability: "https://schema.org/InStock",
+    },
+    {
+      "@type": "Offer",
+      priceCurrency: "EUR",
+      price: site.priceApt2,
+      description: "Apartment 2 (cosy double) — per night, sleeps 2",
+      availability: "https://schema.org/InStock",
+    },
+  ],
 };
 
 export default function RootLayout({
