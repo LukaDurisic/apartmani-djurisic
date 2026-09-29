@@ -765,10 +765,6 @@ h3 {
   margin: 0 auto;
   padding: 80px var(--pad);
 }
-.contact-section .g2 {
-  gap: 52px;
-  align-items: start;
-}
 .contact-section h2 {
   margin: 10px 0 20px;
   font-size: clamp(30px, 4vw, 42px);
@@ -782,24 +778,63 @@ h3 {
   margin: 0 0 30px;
   max-width: 400px;
 }
-.contact-list {
+.contact-section .g2 {
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+}
+.contact-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.contact-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-}
-.contact-list a {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  font-size: 17px;
+  gap: 6px;
+  min-width: 0;
+  background: var(--sand);
+  border: 1px solid transparent;
+  padding: 26px 24px 24px;
   color: var(--espresso);
+  transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
 }
-.contact-list a:hover {
-  color: var(--olive);
+.contact-card--wide {
+  grid-column: 1 / -1;
 }
-.contact-list .diamond {
+.contact-card:hover {
+  border-color: var(--hairline);
+  background: var(--placeholder);
+  transform: translateY(-3px);
+}
+.contact-card__label {
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
   color: var(--tan);
-  font-size: 14px;
+  margin-bottom: 6px;
+}
+.contact-card__value {
+  font-family: var(--font-cormorant), serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.contact-card__note {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--body);
+}
+.contact-card__arrow {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  color: var(--tan);
+  transition: transform 0.3s ease;
+}
+.contact-card:hover .contact-card__arrow {
+  transform: translateX(3px);
 }
 .platforms {
   display: flex;
@@ -810,77 +845,6 @@ h3 {
   padding: 13px 24px;
   font-size: 13px;
   letter-spacing: 0.08em;
-}
-.enquiry {
-  background: var(--sand);
-  padding: 36px clamp(22px, 3vw, 36px);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.enquiry label {
-  display: block;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 7px;
-}
-.enquiry input,
-.enquiry select,
-.enquiry textarea {
-  width: 100%;
-  background: var(--ivory);
-  border: 1px solid rgba(51, 41, 31, 0.2);
-  padding: 13px 14px;
-  font-family: var(--font-jost), sans-serif;
-  font-size: 15px;
-  color: var(--espresso);
-  transition: border-color 0.25s ease;
-}
-.enquiry input:focus,
-.enquiry select:focus,
-.enquiry textarea:focus {
-  outline: none;
-  border-color: var(--olive);
-}
-.enquiry textarea {
-  resize: vertical;
-}
-.enquiry .row {
-  display: flex;
-  gap: 14px;
-}
-.enquiry .row > div {
-  flex: 1;
-}
-.enquiry button {
-  background: var(--espresso);
-  color: var(--ivory);
-  border: none;
-  padding: 15px;
-  font-family: var(--font-jost), sans-serif;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  margin-top: 4px;
-  transition: background 0.25s ease;
-}
-.enquiry button:hover {
-  background: #241c14;
-}
-.enquiry button:disabled {
-  opacity: 0.6;
-  cursor: default;
-}
-.form-note {
-  font-size: 13px;
-  color: var(--olive);
-  margin: 2px 0 0;
-}
-.form-note--error {
-  color: #a8452f;
 }
 
 /* ================= FOOTER ================= */
@@ -976,6 +940,9 @@ h3 {
 }
 
 @media (max-width: 560px) {
+  .contact-cards {
+    grid-template-columns: 1fr;
+  }
   .pricebadge {
     left: 16px;
     bottom: 16px;
